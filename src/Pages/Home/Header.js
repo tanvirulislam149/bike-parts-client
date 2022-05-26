@@ -12,6 +12,12 @@ const Header = () => {
             .then(res => res.json())
             .then(data => setUserName(data.name))
     }, [user])
+
+    const handleSignOut = () => {
+        signOut(auth);
+        localStorage.removeItem('accessToken');
+    }
+
     const menu =
         <>
             <li><Link className='md:py-0 font-bold' to="/blogs">Blogs</Link></li>
@@ -48,7 +54,7 @@ const Header = () => {
                                 user ? <>
                                     <li><Link className='md:py-0' to="/dashboard"><button class=" font-bold">Dashboard</button></Link></li>
                                     <p className='btn bg-white text-gray-900 font-bold'>{userName?.split(" ")[0]}</p>
-                                    <li><button onClick={() => signOut(auth)} class="btn mx-3 text-white font-bold md:py-0 bg-accent-focus border-0">Log Out</button></li>
+                                    <li><button onClick={() => handleSignOut()} class="btn mx-3 text-white font-bold md:py-0 bg-accent-focus border-0">Log Out</button></li>
                                 </> :
                                     <li><Link className='md:py-0' to="/login"><button class="btn bg-accent-focus border-0">Login</button></Link></li>
                             }
