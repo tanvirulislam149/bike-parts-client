@@ -14,7 +14,7 @@ const CheckoutForm = ({ order }) => {
 
     useEffect(() => {
         if (price) {
-            fetch(`http://localhost:5000/create-payment-intent`, {
+            fetch(`https://pacific-inlet-53322.herokuapp.com/create-payment-intent`, {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
@@ -79,7 +79,7 @@ const CheckoutForm = ({ order }) => {
                     transactionId: paymentIntent?.id,
                     orderId: _id,
                 }
-                fetch("http://localhost:5000/updateOrder", {
+                fetch("https://pacific-inlet-53322.herokuapp.com/updateOrder", {
                     method: "PUT",
                     headers: {
                         "content-type": "application/json",

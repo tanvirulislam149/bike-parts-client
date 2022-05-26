@@ -10,7 +10,7 @@ const PaymentPage = () => {
     const [order, setOrder] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?id=${orderId}&email=${user.email}`)
+        fetch(`https://pacific-inlet-53322.herokuapp.com/orders?id=${orderId}&email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setOrder(data);

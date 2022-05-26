@@ -5,7 +5,7 @@ import PartsCard from './PartsCard';
 
 const Parts = ({ setHomeLoading }) => {
     const { isLoading, error, data: parts } = useQuery('parts', () =>
-        fetch('http://localhost:5000/parts').then(res => {
+        fetch('https://pacific-inlet-53322.herokuapp.com/parts').then(res => {
             setHomeLoading(false)
             return res.json();
         })

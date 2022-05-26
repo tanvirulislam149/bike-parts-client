@@ -13,11 +13,11 @@ const Register = () => {
     const [user, loading, error] = useAuthState(auth);
     let navigate = useNavigate();
 
-    useEffect(() => {
-        if (cUser) {
-            navigate("/")
-        }
-    }, [cUser, navigate])
+    // useEffect(() => {
+    //     if (cUser) {
+
+    //     }
+    // }, [cUser, navigate])
 
     if (cLoading || loading || updating) {
         return <Loading></Loading>
@@ -40,8 +40,31 @@ const Register = () => {
 
 
 
+    const onSubmit = async (data) => {
+        if (data.password !== data.confirmPassword) {
+            toast.error("PASSWORD DIDN'T MATCH", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            reset();
+            return
+        }
+        const displayName = data.name;
+        const email = data.email;
+        const password = data.password;
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName });
+        reset();
+    };
+
 
     if (user) {
+        navigate("/")
         const customId = "custom-id-yes";
         toast.success(`Registration Successful. Welcome ${user.displayName}`, {
             toastId: customId,
@@ -69,27 +92,9 @@ const Register = () => {
     }
 
 
-    const onSubmit = async (data) => {
-        if (data.password !== data.confirmPassword) {
-            toast.error("PASSWORD DIDN'T MATCH", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            reset();
-            return
-        }
-        const displayName = data.name;
-        const email = data.email;
-        const password = data.password;
-        await createUserWithEmailAndPassword(email, password);
-        await updateProfile({ displayName });
-        reset();
-    };
+
+
+
     return (
         <div class="hero h-full bg-base-200">
             <div class="md:w-2/4 w-full py-16 hero-content ">

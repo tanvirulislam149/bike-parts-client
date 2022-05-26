@@ -7,7 +7,7 @@ const MyProfile = () => {
     const [user, loading, uError] = useAuthState(auth);
     const [person, setPerson] = useState();
     useEffect(() => {
-        fetch(`http://localhost:5000/userData/${user?.email}`)
+        fetch(`https://pacific-inlet-53322.herokuapp.com/userData/${user?.email}`)
             .then(res => res.json())
             .then(data => setPerson(data));
     }, [user])
@@ -21,7 +21,7 @@ const MyProfile = () => {
             phone: e.target.phone.value,
             education: e.target.education.value
         }
-        fetch("http://localhost:5000/updateUser", {
+        fetch("https://pacific-inlet-53322.herokuapp.com/updateUser", {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -32,7 +32,7 @@ const MyProfile = () => {
             .then(data => {
                 if (data.acknowledged) {
                     toast.success("update successful")
-                    fetch(`http://localhost:5000/userData/${user?.email}`)
+                    fetch(`https://pacific-inlet-53322.herokuapp.com/userData/${user?.email}`)
                         .then(res => res.json())
                         .then(data => setPerson(data));
                 }

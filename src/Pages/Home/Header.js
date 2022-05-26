@@ -7,11 +7,22 @@ import auth from "../../firebase.init";
 const Header = () => {
     const [user, loading, error] = useAuthState(auth);
     const [userName, setUserName] = useState();
-    useEffect(() => {
-        fetch(`http://localhost:5000/headerName/${user?.email}`)
-            .then(res => res.json())
-            .then(data => setUserName(data.name))
-    }, [user])
+    const headerName = (email) => {
+        if (email) {
+            fetch(`http://localhost:5000/headerName/${email}`)
+                .then(res => res.json())
+                .then(data => setUserName(data.name))
+        }
+        else {
+            headerName(user.email);
+        }
+    }
+
+    if (user) {
+        headerName(user.email);
+    }
+
+
     const menu =
         <>
             <li><Link className='md:py-0 font-bold' to="/blogs">Blogs</Link></li>

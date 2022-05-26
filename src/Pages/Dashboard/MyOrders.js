@@ -12,14 +12,14 @@ const MyOrders = () => {
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders/${user?.email}`)
+        fetch(`https://pacific-inlet-53322.herokuapp.com/orders/${user?.email}`)
             .then(res => res.json())
             .then(data => setOrders(data));
     }, [user])
 
     useEffect(() => {
         if (modal) {
-            fetch(`http://localhost:5000/deleteOrder/${id}`)
+            fetch(`https://pacific-inlet-53322.herokuapp.com/deleteOrder/${id}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.acknowledged) {

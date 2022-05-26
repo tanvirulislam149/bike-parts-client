@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 const MakeAdmin = () => {
     const [user, setUser] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/allUser")
+        fetch("https://pacific-inlet-53322.herokuapp.com/allUser")
             .then(res => res.json())
             .then(data => setUser(data));
     }, [])
 
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/makeAdmin/${id}`, {
+        fetch(`https://pacific-inlet-53322.herokuapp.com/makeAdmin/${id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -18,7 +18,7 @@ const MakeAdmin = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    fetch("http://localhost:5000/allUser")
+                    fetch("https://pacific-inlet-53322.herokuapp.com/allUser")
                         .then(res => res.json())
                         .then(data => setUser(data));
                 }

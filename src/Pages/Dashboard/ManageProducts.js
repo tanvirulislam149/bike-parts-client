@@ -7,7 +7,7 @@ const ManageProducts = () => {
     const [id, setId] = useState();
 
     useEffect(() => {
-        fetch("http://localhost:5000/parts")
+        fetch("https://pacific-inlet-53322.herokuapp.com/parts")
             .then(res => res.json())
             .then(data => setProducts(data));
     }, [])
@@ -15,7 +15,7 @@ const ManageProducts = () => {
 
     useEffect(() => {
         if (modal) {
-            fetch(`http://localhost:5000/deleteProduct/${id}`)
+            fetch(`https://pacific-inlet-53322.herokuapp.com/deleteProduct/${id}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.acknowledged) {

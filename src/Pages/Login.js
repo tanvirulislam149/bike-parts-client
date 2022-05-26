@@ -46,7 +46,7 @@ const Login = () => {
             name: gUser.user.displayName,
             email: gUser.user.email,
         }
-        fetch("http://localhost:5000/users", {
+        fetch("https://pacific-inlet-53322.herokuapp.com/users", {
             method: "PUT",
             headers: {
                 "content-type": "application/json",

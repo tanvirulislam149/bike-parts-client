@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
-        fetch("http://localhost:5000/parts", {
+        fetch("https://pacific-inlet-53322.herokuapp.com/parts", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

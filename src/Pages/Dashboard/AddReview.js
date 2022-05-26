@@ -22,7 +22,7 @@ const AddReview = () => {
                 ratings: ratings,
                 text: text,
             }
-            fetch("http://localhost:5000/reviews", {
+            fetch("https://pacific-inlet-53322.herokuapp.com/reviews", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",

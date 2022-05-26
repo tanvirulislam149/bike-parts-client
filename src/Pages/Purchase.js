@@ -17,7 +17,7 @@ const Purchase = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/purchase/${partsId}`)
+        fetch(`https://pacific-inlet-53322.herokuapp.com/purchase/${partsId}`)
             .then(res => res.json())
             .then(data => {
                 setPart(data);
@@ -51,7 +51,7 @@ const Purchase = () => {
             address: e.target.address.value,
             phone: e.target.phone.value,
         }
-        fetch("http://localhost:5000/orders", {
+        fetch("https://pacific-inlet-53322.herokuapp.com/orders", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -63,7 +63,7 @@ const Purchase = () => {
                 if (data.acknowledged) {
                     setOrderId(data.insertedId);
                     const quantity = (parseInt(part.quantity) - parseInt(orderQuantity));
-                    fetch("http://localhost:5000/updateQuantity", {
+                    fetch("https://pacific-inlet-53322.herokuapp.com/updateQuantity", {
                         method: "PUT",
                         headers: {
                             "content-type": "application/json",

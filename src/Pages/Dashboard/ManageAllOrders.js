@@ -6,17 +6,17 @@ const ManageAllOrders = () => {
     const [modal, setModal] = useState(false);
     const [id, setId] = useState();
     useEffect(() => {
-        fetch("http://localhost:5000/allOrders")
+        fetch("https://pacific-inlet-53322.herokuapp.com/allOrders")
             .then(res => res.json())
             .then(data => setAllOrders(data));
     }, [])
 
     const handleShipped = (id) => {
-        fetch(`http://localhost:5000/shipped/${id}`)
+        fetch(`https://pacific-inlet-53322.herokuapp.com/shipped/${id}`)
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    fetch("http://localhost:5000/allOrders")
+                    fetch("https://pacific-inlet-53322.herokuapp.com/allOrders")
                         .then(res => res.json())
                         .then(data => setAllOrders(data));
                 }
@@ -26,7 +26,7 @@ const ManageAllOrders = () => {
 
     useEffect(() => {
         if (modal) {
-            fetch(`http://localhost:5000/cancelOrder/${id}`)
+            fetch(`https://pacific-inlet-53322.herokuapp.com/cancelOrder/${id}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.acknowledged) {
