@@ -1,4 +1,6 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import auth from '../../firebase.init';
 import DeleteModal from '../DeleteModal';
 
 const ManageProducts = () => {
@@ -15,9 +17,17 @@ const ManageProducts = () => {
 
     useEffect(() => {
         if (modal) {
-            fetch(`https://pacific-inlet-53322.herokuapp.com/deleteProduct/${id}`)
+            fetch(`https://pacific-inlet-53322.herokuapp.com/deleteProduct/${id}`, {
+                headers: {
+                    authorization: localStorage.getItem("accessToken")
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
+                    if (data.message) {
+                        signOut(auth);
+                        localStorage.removeItem("accessToken");
+                    }
                     if (data.acknowledged) {
                         const remaining = products.filter(o => o._id !== id);
                         setProducts(remaining);

@@ -1,3 +1,4 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
@@ -10,10 +11,20 @@ const PaymentPage = () => {
     const [order, setOrder] = useState({});
 
     useEffect(() => {
-        fetch(`https://pacific-inlet-53322.herokuapp.com/orders?id=${orderId}&email=${user.email}`)
+        fetch(`https://pacific-inlet-53322.herokuapp.com/orders?id=${orderId}&email=${user.email}`, {
+            headers: {
+                authorization: localStorage.getItem("accessToken")
+            }
+        })
             .then(res => res.json())
             .then(data => {
-                setOrder(data);
+                if (data.message) {
+                    signOut(auth);
+                    localStorage.removeItem("accessToken");
+                }
+                else {
+                    setOrder(data);
+                }
             })
     }, [orderId, user])
     return (

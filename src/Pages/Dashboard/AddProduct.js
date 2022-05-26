@@ -1,6 +1,8 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 
 const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -9,11 +11,16 @@ const AddProduct = () => {
             method: "POST",
             headers: {
                 "content-type": "application/json",
+                authorization: localStorage.getItem("accessToken")
             },
             body: JSON.stringify(data)
         })
             .then(res => res.json())
             .then(data => {
+                if (data.message) {
+                    signOut(auth);
+                    localStorage.removeItem("accessToken");
+                }
                 if (data.acknowledged) {
                     toast.success("Product Added")
                 }

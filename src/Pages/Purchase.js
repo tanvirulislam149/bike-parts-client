@@ -1,3 +1,4 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { set } from 'react-hook-form';
@@ -17,11 +18,21 @@ const Purchase = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`https://pacific-inlet-53322.herokuapp.com/purchase/${partsId}`)
+        fetch(`https://pacific-inlet-53322.herokuapp.com/purchase/${partsId}`, {
+            headers: {
+                authorization: localStorage.getItem("accessToken")
+            }
+        })
             .then(res => res.json())
             .then(data => {
-                setPart(data);
-                setEndOrderQuantity(data.quantity);
+                if (data.message) {
+                    signOut(auth);
+                    localStorage.removeItem("accessToken");
+                }
+                else {
+                    setPart(data);
+                    setEndOrderQuantity(data.quantity);
+                }
             })
     }, [partsId, endOrderQuantity])
 
@@ -55,11 +66,16 @@ const Purchase = () => {
             method: "POST",
             headers: {
                 "content-type": "application/json",
+                authorization: localStorage.getItem("accessToken")
             },
             body: JSON.stringify(order)
         })
             .then(res => res.json())
             .then(data => {
+                if (data.message) {
+                    signOut(auth);
+                    localStorage.removeItem("accessToken");
+                }
                 if (data.acknowledged) {
                     setOrderId(data.insertedId);
                     const quantity = (parseInt(part.quantity) - parseInt(orderQuantity));
@@ -67,11 +83,16 @@ const Purchase = () => {
                         method: "PUT",
                         headers: {
                             "content-type": "application/json",
+                            authorization: localStorage.getItem("accessToken")
                         },
                         body: JSON.stringify({ quantity, id: part._id })
                     })
                         .then(res => res.json())
                         .then(data => {
+                            if (data.message) {
+                                signOut(auth);
+                                localStorage.removeItem("accessToken");
+                            }
                             if (data.acknowledged) {
                                 setEndOrderQuantity(quantity);
                                 toast.success("Order Successfull")

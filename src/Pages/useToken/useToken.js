@@ -5,7 +5,7 @@ const useToken = (user) => {
     useEffect(() => {
         const email = user?.user?.email;
         if (email) {
-            fetch(`http://localhost:5000/getToken/${email}`, {
+            fetch(`https://pacific-inlet-53322.herokuapp.com/getToken`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

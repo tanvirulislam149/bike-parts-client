@@ -1,4 +1,6 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import auth from '../../firebase.init';
 import DeleteModal from '../DeleteModal';
 
 const ManageAllOrders = () => {
@@ -6,15 +8,33 @@ const ManageAllOrders = () => {
     const [modal, setModal] = useState(false);
     const [id, setId] = useState();
     useEffect(() => {
-        fetch("https://pacific-inlet-53322.herokuapp.com/allOrders")
+        fetch("https://pacific-inlet-53322.herokuapp.com/allOrders", {
+            headers: {
+                authorization: localStorage.getItem("accessToken")
+            }
+        })
             .then(res => res.json())
-            .then(data => setAllOrders(data));
+            .then(data => {
+                if (data.message) {
+                    signOut(auth);
+                    localStorage.removeItem("accessToken");
+                }
+                setAllOrders(data)
+            });
     }, [])
 
     const handleShipped = (id) => {
-        fetch(`https://pacific-inlet-53322.herokuapp.com/shipped/${id}`)
+        fetch(`https://pacific-inlet-53322.herokuapp.com/shipped/${id}`, {
+            headers: {
+                authorization: localStorage.getItem("accessToken")
+            }
+        })
             .then(res => res.json())
             .then(data => {
+                if (data.message) {
+                    signOut(auth);
+                    localStorage.removeItem("accessToken");
+                }
                 if (data.acknowledged) {
                     fetch("https://pacific-inlet-53322.herokuapp.com/allOrders")
                         .then(res => res.json())
@@ -26,9 +46,17 @@ const ManageAllOrders = () => {
 
     useEffect(() => {
         if (modal) {
-            fetch(`https://pacific-inlet-53322.herokuapp.com/cancelOrder/${id}`)
+            fetch(`https://pacific-inlet-53322.herokuapp.com/cancelOrder/${id}`, {
+                headers: {
+                    authorization: localStorage.getItem("accessToken")
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
+                    if (data.message) {
+                        signOut(auth);
+                        localStorage.removeItem("accessToken");
+                    }
                     if (data.acknowledged) {
                         const remaining = allOrders.filter(o => o._id !== id);
                         setAllOrders(remaining);

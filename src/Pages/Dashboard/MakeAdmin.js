@@ -1,11 +1,23 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import auth from '../../firebase.init';
 
 const MakeAdmin = () => {
     const [user, setUser] = useState([])
     useEffect(() => {
-        fetch("https://pacific-inlet-53322.herokuapp.com/allUser")
+        fetch("https://pacific-inlet-53322.herokuapp.com/allUser", {
+            headers: {
+                authorization: localStorage.getItem("accessToken")
+            }
+        })
             .then(res => res.json())
-            .then(data => setUser(data));
+            .then(data => {
+                if (data.message) {
+                    signOut(auth);
+                    localStorage.removeItem("accessToken");
+                }
+                setUser(data)
+            });
     }, [])
 
     const handleMakeAdmin = (id) => {
@@ -13,14 +25,29 @@ const MakeAdmin = () => {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
+                authorization: localStorage.getItem("accessToken")
             },
         })
             .then(res => res.json())
             .then(data => {
+                if (data.message) {
+                    signOut(auth);
+                    localStorage.removeItem("accessToken");
+                }
                 if (data.acknowledged) {
-                    fetch("https://pacific-inlet-53322.herokuapp.com/allUser")
+                    fetch("https://pacific-inlet-53322.herokuapp.com/allUser", {
+                        headers: {
+                            authorization: localStorage.getItem("accessToken")
+                        }
+                    })
                         .then(res => res.json())
-                        .then(data => setUser(data));
+                        .then(data => {
+                            if (data.message) {
+                                signOut(auth);
+                                localStorage.removeItem("accessToken");
+                            }
+                            setUser(data)
+                        });
                 }
             });
     }

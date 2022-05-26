@@ -8,7 +8,7 @@ const Header = () => {
     const [user, loading, error] = useAuthState(auth);
     const [userName, setUserName] = useState();
     useEffect(() => {
-        fetch(`http://localhost:5000/headerName/${user?.email}`)
+        fetch(`https://pacific-inlet-53322.herokuapp.com/headerName/${user?.email}`)
             .then(res => res.json())
             .then(data => setUserName(data.name))
     }, [user])

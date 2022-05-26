@@ -13,7 +13,7 @@ const Register = () => {
     const [updateProfile, updating, uError] = useUpdateProfile(auth);
     const [user, loading, error] = useAuthState(auth);
     let navigate = useNavigate();
-    const [token] = useToken(user);
+    const [token] = useToken(cUser);
 
     useEffect(() => {
         if (token) {
@@ -81,7 +81,7 @@ const Register = () => {
             name: user.displayName,
             email: user.email,
         }
-        fetch("http://localhost:5000/users", {
+        fetch("https://pacific-inlet-53322.herokuapp.com/users", {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
