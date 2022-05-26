@@ -12,7 +12,7 @@ const MyPortfolio = () => {
                     <p className='text-5xl font-bold text-accent-focus'>Hi, I am</p>
                     <p className='text-7xl font-bold text-accent-focus'>Tanvirul Islam.</p>
                     <p className='text-accent-focus'>Junior FrontEnd Developer</p>
-                    <p className='text-2xl my-5 font-bold text-accent-focus'>Email: tanvirulislam@gmail.com</p>
+                    <p className='text-2xl my-5 font-bold text-accent-focus'>Email: tanvirulislam149@gmail.com</p>
                 </div>
             </div>
             <div>
