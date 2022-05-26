@@ -21,7 +21,7 @@ const Summary = () => {
             </div>
             <div className='md:flex justify-center text-center my-10'>
                 <div className='mx-20'>
-                    <img className='w-36 mx-auto' src="https://thumbs.dreamstime.com/b/flag-icon-flat-style-flag-icon-flat-style-flag-symbol-isolated-white-background-simple-flag-abstract-icon-black-vector-118405687.jpg" alt="" />
+                    <img className='w-28 mx-auto' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwal4az1CCAuge9R4KO6W0Aq3mZWzFavJR7Q&usqp=CAU" alt="" />
                     <p className='text-5xl my-7 font-bold text-gray-500'><CountUp end={72} duration="5" onStart={onStart} onEnd={onEnd} containerProps={containerProps} /></p>
                     <p className='text-3xl font-bold text-gray-500'>Countries</p>
                 </div>
