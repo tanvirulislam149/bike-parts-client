@@ -4,20 +4,22 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../firebase.init';
 import Loading from "./Loading";
+import useToken from './useToken/useToken';
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     let navigate = useNavigate();
     let location = useLocation();
+    const [token] = useToken(user || gUser);
 
     let from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
-        if (user || gUser) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [user, gUser, from, navigate])
+    }, [user, gUser, token, from, navigate])
 
     if (loading || gLoading) {
         return <Loading></Loading>

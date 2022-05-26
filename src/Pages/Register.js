@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import auth from "../firebase.init";
 import { useAuthState, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Loading from './Loading';
+import useToken from './useToken/useToken';
 
 const Register = () => {
     const [createUserWithEmailAndPassword, cUser, cLoading, cError,] = useCreateUserWithEmailAndPassword(auth);
@@ -12,12 +13,13 @@ const Register = () => {
     const [updateProfile, updating, uError] = useUpdateProfile(auth);
     const [user, loading, error] = useAuthState(auth);
     let navigate = useNavigate();
+    const [token] = useToken(user);
 
-    // useEffect(() => {
-    //     if (cUser) {
-
-    //     }
-    // }, [cUser, navigate])
+    useEffect(() => {
+        if (token) {
+            navigate("/");
+        }
+    }, [token, navigate])
 
     if (cLoading || loading || updating) {
         return <Loading></Loading>
@@ -64,7 +66,6 @@ const Register = () => {
 
 
     if (user) {
-        navigate("/")
         const customId = "custom-id-yes";
         toast.success(`Registration Successful. Welcome ${user.displayName}`, {
             toastId: customId,
