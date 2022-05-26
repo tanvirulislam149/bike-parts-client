@@ -36,9 +36,19 @@ const ManageAllOrders = () => {
                     localStorage.removeItem("accessToken");
                 }
                 if (data.acknowledged) {
-                    fetch("https://pacific-inlet-53322.herokuapp.com/allOrders")
+                    fetch("https://pacific-inlet-53322.herokuapp.com/allOrders", {
+                        headers: {
+                            authorization: localStorage.getItem("accessToken")
+                        }
+                    })
                         .then(res => res.json())
-                        .then(data => setAllOrders(data));
+                        .then(data => {
+                            if (data.message) {
+                                signOut(auth);
+                                localStorage.removeItem("accessToken");
+                            }
+                            setAllOrders(data);
+                        });
                 }
             });
     }
@@ -86,7 +96,7 @@ const ManageAllOrders = () => {
                         </thead>
                         <tbody>
                             {
-                                allOrders.map((o, index) =>
+                                allOrders?.map((o, index) =>
                                     <>
                                         <tr key={index}>
                                             <th>{index + 1}</th>
