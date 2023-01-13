@@ -6,29 +6,29 @@ import auth from "./firebase.init";
 import Loading from "./Pages/Loading";
 
 function RequiredAdmin({ children }) {
-    const [user, loading] = useAuthState(auth);
-    const [admin, setAdmin] = useState();
-    const [dLoading, setLoading] = useState(true);
+  const [user, loading] = useAuthState(auth);
+  const [admin, setAdmin] = useState();
+  const [dLoading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetch(`https://pacific-inlet-53322.herokuapp.com/checkAdmin/${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setAdmin(data);
-                setLoading(false);
-            });
-    }, [user])
+  useEffect(() => {
+    fetch(`https://autoparts-vsj8.onrender.com/checkAdmin/${user?.email}`)
+      .then(res => res.json())
+      .then(data => {
+        setAdmin(data);
+        setLoading(false);
+      });
+  }, [user])
 
-    if (loading || dLoading) {
-        return <Loading></Loading>
-    }
+  if (loading || dLoading) {
+    return <Loading></Loading>
+  }
 
 
-    if (admin?.role !== "admin") {
-        signOut(auth);
-        return
-    }
+  if (admin?.role !== "admin") {
+    signOut(auth);
+    return
+  }
 
-    return children;
+  return children;
 }
 export default RequiredAdmin;
