@@ -1,6 +1,6 @@
 # AutoParts Manufacturer Ltd.
 
-TO SEE THE WEBSITE, [Click Here](https://assignment-12-ca3ac.web.app/).
+TO SEE THE WEBSITE, [Click Here](https://auto-parts-client.vercel.app/).
 
 ### Admin Credential
 Email - admin@gmail.com <br/>
