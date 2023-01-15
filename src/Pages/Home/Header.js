@@ -7,6 +7,7 @@ import auth from "../../firebase.init";
 const Header = () => {
   const [user, loading, error] = useAuthState(auth);
   const [userName, setUserName] = useState();
+  console.log(user?.displayName);
   useEffect(() => {
     fetch(`https://autoparts-vsj8.onrender.com/headerName/${user?.email}`)
       .then(res => res.json())
@@ -41,7 +42,8 @@ const Header = () => {
               {
                 user ? <>
                   <li><Link className='md:py-0' to="/dashboard"><button class="font-bold">Dashboard</button></Link></li>
-                  <p className='btn bg-white hover:text-white text-gray-900 font-bold my-3'>{userName?.split(" ")[0]}</p>
+                  {/* <p className='btn bg-white text-gray-900 font-bold'>{userName?.split(" ")[0]}</p> */}
+                  <p className='btn bg-white text-gray-900 font-bold'>{user?.displayName?.split(" ")[0]}</p>
                   <li><button onClick={() => signOut(auth)} class="btn md:py-0 bg-accent-focus border-0">Log Out</button></li>
                 </> :
                   <li><Link className='md:py-0' to="/login"><button class="btn bg-accent-focus border-0">Login</button></Link></li>
@@ -54,7 +56,8 @@ const Header = () => {
               {
                 user ? <>
                   <li><Link className='md:py-0' to="/dashboard"><button class=" font-bold">Dashboard</button></Link></li>
-                  <p className='btn bg-white text-gray-900 font-bold'>{userName?.split(" ")[0]}</p>
+                  {/* <p className='btn bg-white text-gray-900 font-bold'>{userName?.split(" ")[0]}</p> */}
+                  <p className='btn bg-white text-gray-900 font-bold'>{user?.displayName?.split(" ")[0]}</p>
                   <li><button onClick={() => handleSignOut()} class="btn mx-3 text-white font-bold md:py-0 bg-accent-focus border-0">Log Out</button></li>
                 </> :
                   <li><Link className='md:py-0' to="/login"><button class="btn bg-accent-focus border-0">Login</button></Link></li>
