@@ -20,8 +20,9 @@ const Header = () => {
 
   const menu =
     <>
+      <li><Link className='md:py-0 font-bold' to="/">Home</Link></li>
       <li><Link className='md:py-0 font-bold' to="/blogs">Blogs</Link></li>
-      <li><Link className='md:py-0 font-bold' to="/myPortfolio">Portfolio</Link></li>
+      {/* <li><Link className='md:py-0 font-bold' to="/myPortfolio">Portfolio</Link></li> */}
 
     </>
   return (
@@ -40,7 +41,7 @@ const Header = () => {
               {
                 user ? <>
                   <li><Link className='md:py-0' to="/dashboard"><button class="font-bold">Dashboard</button></Link></li>
-                  <p className='btn bg-white text-gray-900 font-bold'>{userName?.split(" ")[0]}</p>
+                  <p className='btn bg-white hover:text-white text-gray-900 font-bold my-3'>{userName?.split(" ")[0]}</p>
                   <li><button onClick={() => signOut(auth)} class="btn md:py-0 bg-accent-focus border-0">Log Out</button></li>
                 </> :
                   <li><Link className='md:py-0' to="/login"><button class="btn bg-accent-focus border-0">Login</button></Link></li>

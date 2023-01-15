@@ -2,6 +2,10 @@
 
 TO SEE THE WEBSITE, [Click Here](https://assignment-12-ca3ac.web.app/).
 
+### Admin Credential
+Email - admin@gmail.com
+Password - asdfasdf
+
 
 ## Features 
 * User can order any product here.
