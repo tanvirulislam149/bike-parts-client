@@ -32,7 +32,7 @@ const Header = () => {
     <div className='sticky top-0 z-50 rajdhani-font'>
       <div class="px-2 md:px-10 navbar text-white bg-black border-b-4 border-red-500 py-0">
         <div class="navbar">
-          <Link className='text-2xl md:pl-10 orange-color text-gray-700 font-bold' to="/">
+          <Link className='text-2xl md:pl-10 orange-color font-bold' to="/">
             <img className='w-24' src={logo} alt="" />BikeParts
           </Link>
         </div>

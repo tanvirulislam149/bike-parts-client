@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap"); /* Rajdhani font  */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap"); /* poppins font*/
 
 @tailwind base;
 @tailwind components;
@@ -9,7 +10,8 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
-  font-family: "Inter", sans-serif;
+  /* font-family: "Inter", sans-serif; */
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
