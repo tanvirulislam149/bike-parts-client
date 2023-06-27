@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './Pages/Home/HomePage';
-import Header from "./Pages/Home/Header"
+import Header from "./Pages/Home/Header/Header"
 import Blogs from './Pages/Blogs';
 import Purchase from './Pages/Purchase';
 import Register from './Pages/Register';

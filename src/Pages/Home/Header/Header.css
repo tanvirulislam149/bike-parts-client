@@ -1,0 +1,14 @@
+.rajdhani-font {
+  font-family: "Rajdhani", sans-serif;
+}
+.orange-color {
+  color: #f73312;
+}
+.login-btn {
+  background-color: #f73312;
+  border-radius: 0 !important;
+}
+
+.login-btn:hover {
+  background-color: black;
+}
