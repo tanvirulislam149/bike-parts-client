@@ -11,4 +11,5 @@
 
 .login-btn:hover {
   background-color: black;
+  border: 1px solid #f73312;
 }
