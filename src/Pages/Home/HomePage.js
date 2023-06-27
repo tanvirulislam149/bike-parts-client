@@ -3,7 +3,7 @@ import Banner from './Banner/Banner';
 import Facilities from './Facilities';
 import Footer from './Footer';
 import Newsletter from './Newsletter';
-import Parts from './Parts';
+import Parts from './Parts/Parts';
 import Reviews from './Reviews';
 import Summary from './Summary';
 
