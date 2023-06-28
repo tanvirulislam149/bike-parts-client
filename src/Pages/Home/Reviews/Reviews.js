@@ -5,6 +5,10 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import Rating from "react-rating";
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { BsQuote } from "react-icons/bs";
+import "./Reviews.css"
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -17,9 +21,11 @@ const Reviews = () => {
 
 
   return (
-    <div className='mx-3 md:mx-10 mb-10 border-2 p-3 text-center bg-gray-100' style={{ marginTop: "-150px" }}>
-      <h2 className='text-5xl my-5 text-accent-focus font-bold'>Feedback</h2>
-      <div>
+    <div className='mx-3 md:mx-0 mb-20 border-0 p-3 text-center'>
+      <h2 className='text-4xl my-14 orange-color font-bold'>What people think about us</h2>
+      <div className="swiper-cont">
+        <i className="icon-arrow-long-right review-swiper-button-prev"><BsFillArrowLeftCircleFill className="left-arrow" /></i>
+        <i className="icon-arrow-long-left review-swiper-button-next"><BsFillArrowRightCircleFill className="right-arrow" /></i>
         <Swiper
           slidesPerView={1}
           spaceBetween={20}
@@ -28,6 +34,7 @@ const Reviews = () => {
           loopFillGroupWithBlank={true}
           pagination={{
             clickable: true,
+            el: '.swiper-custom-pagination'
           }}
           autoplay={{
             delay: 3000,
@@ -44,29 +51,32 @@ const Reviews = () => {
             // },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 20,
+              spaceBetween: 30,
             },
           }}
-          navigation={true}
+          navigation={{
+            nextEl: '.review-swiper-button-next',
+            prevEl: '.review-swiper-button-prev',
+          }}
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
           {
-            reviews.map((r, index) => <SwiperSlide key={index} style={{ height: "350px" }} className="pb-24 pt-14 bg-white rounded-3xl text-black">{
+            reviews.map((r, index) => <SwiperSlide key={index} className="py-10 border-2  border-black bg-white rounded-none text-black">{
               <>
                 <p className="font-bold text-3xl mb-3">{r.name}</p>
-                {/* <p className="my-4">Ratings: {r.ratings}</p> */}
                 <Rating
                   initialRating={r.ratings}
                   readonly
-                  emptySymbol={<img src="https://i.ibb.co/WyWMbK1/download-removebg-preview.png" className="icon w-8" />}
-                  fullSymbol={<img src="https://i.ibb.co/VWnVT22/Star-icon-removebg-preview.png" className="icon w-8" />}
+                  emptySymbol={<img src="https://i.ibb.co/WyWMbK1/download-removebg-preview.png" className="icon w-5" />}
+                  fullSymbol={<img src="https://i.ibb.co/VWnVT22/Star-icon-removebg-preview.png" className="icon w-5" />}
                 />
-                <p className="text-lg pt-2 px-10">{r.text} Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit facere officiis molestiae! Sint explicabo minus quojkgh</p>
+                <p className="text-lg pt-2 px-10"><BsQuote className="w-10 h-10" /> {r.text}. Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit facere officiis molestiae! Sint explicabo minus quojkgh.</p>
               </>
             }</SwiperSlide>)
           }
         </Swiper>
+        <div className="swiper-custom-pagination" />
       </div>
     </div>
   );

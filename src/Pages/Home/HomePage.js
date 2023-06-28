@@ -4,7 +4,7 @@ import Facilities from './Facilities';
 import Footer from './Footer';
 import Newsletter from './Newsletter';
 import Parts from './Parts/Parts';
-import Reviews from './Reviews';
+import Reviews from './Reviews/Reviews';
 import Summary from './Summary';
 
 const HomePage = () => {
@@ -12,16 +12,21 @@ const HomePage = () => {
   return (
     <div>
       {
-        homeLoading ? "" : <Banner></Banner>
+        homeLoading ? "" :
+          <>
+            <Banner></Banner>
+            <Facilities></Facilities>
+          </>
+
       }
       <Parts setHomeLoading={setHomeLoading}></Parts>
       {
         homeLoading ? "" :
           <>
             <Summary></Summary>
-            <Facilities></Facilities>
-            <Newsletter></Newsletter>
+
             <Reviews></Reviews>
+            <Newsletter></Newsletter>
             <Footer></Footer>
           </>
       }
