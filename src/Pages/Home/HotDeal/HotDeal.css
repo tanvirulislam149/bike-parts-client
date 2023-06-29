@@ -1,0 +1,21 @@
+.hotDeal-cont {
+  background: url("../../../assets/hotDeal.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 150px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 576px) {
+  .hotDeal-cont {
+    background: url("../../../assets/hotDeal2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    padding: 80px;
+  }
+}
