@@ -1,0 +1,15 @@
+.background {
+  background: url("../../../assets/newsletter-bg.jpg");
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.subscribe-btn {
+  background-color: #f73312;
+  font-weight: 400;
+}
+
+.subscribe-btn:hover {
+  background-color: black;
+  border: 1px solid #f73312;
+}

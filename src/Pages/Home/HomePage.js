@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Banner from './Banner/Banner';
 import Facilities from './Facilities';
 import Footer from './Footer';
-import Newsletter from './Newsletter';
+import Newsletter from './Newsletter/Newsletter';
 import Parts from './Parts/Parts';
 import Reviews from './Reviews/Reviews';
 import Summary from './Summary';
