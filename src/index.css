@@ -26,7 +26,5 @@ code {
 
 :root {
   --swiper-navigation-size: 30px !important;
-  /* --swiper-navigation-top-offset: 50% !important;
-  --swiper-navigation-sides-offset: 10px !important; */
   --swiper-navigation-color: #f73312;
 }
