@@ -5,7 +5,7 @@ import Header from "./Pages/Home/Header/Header"
 import Blogs from './Pages/Blogs';
 import Purchase from './Pages/Purchase';
 import Register from './Pages/Register';
-import Login from "./Pages/Login";
+import Login from "./Pages/Login/Login";
 import { ToastContainer } from 'react-toastify';
 import RequiredAuth from "./RequiredAuth";
 import Dashboard from './Pages/Dashboard/Dashboard';
@@ -20,6 +20,7 @@ import AddProduct from './Pages/Dashboard/AddProduct';
 import MyPortfolio from './Pages/MyPortfolio';
 import NotFound from './Pages/NotFound';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
+import Footer from './Pages/Home/Footer/Footer';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path='/dashboard/manageProducts' element={<RequiredAuth><RequiredAdmin><ManageProducts></ManageProducts></RequiredAdmin></RequiredAuth>}></Route>
         </Route>
       </Routes>
+      <Footer></Footer>
       <ToastContainer
         position="top-center"
         autoClose={5000}

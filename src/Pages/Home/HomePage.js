@@ -28,7 +28,7 @@ const HomePage = () => {
             <Summary></Summary>
             <Reviews></Reviews>
             <Newsletter></Newsletter>
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
           </>
       }
     </div>

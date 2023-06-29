@@ -1,0 +1,11 @@
+.password-cont {
+  position: relative;
+}
+.show-btn {
+  position: absolute;
+  top: 23%;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
