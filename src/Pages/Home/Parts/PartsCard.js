@@ -10,7 +10,7 @@ const PartsCard = (props) => {
   }
 
   return (
-    <div class="card bg-base-100 shadow-2xl rounded-none">
+    <div class="card bg-base-100 hover-effect rounded-none">
       <figure class="px-0">
         <img className='h-64 w-64' src={picture} alt="Shoes" />
       </figure>

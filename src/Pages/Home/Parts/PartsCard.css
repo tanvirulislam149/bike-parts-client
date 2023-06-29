@@ -7,3 +7,9 @@
   color: black;
   border: 1px solid #f73312;
 }
+
+.hover-effect:hover {
+  box-shadow: 0px 10px 30px 2px lightgray;
+  transform: translate(0px, -15px);
+  transition: transform 0.2s;
+}
