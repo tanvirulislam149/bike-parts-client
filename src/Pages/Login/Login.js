@@ -85,7 +85,10 @@ const Login = () => {
     signInWithGoogle();
   }
 
-
+  const handleForgotPass = async () => {
+    const success = await sendPasswordResetEmail(email);
+    setEmail("");
+  }
 
   return (
     <div class="hero h-screen bg-base-200">
@@ -128,14 +131,7 @@ const Login = () => {
             <p className='mb-3 text-black'>Enter Email For Reset Password</p>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} name='forgotPass' placeholder="Enter Your Email" class="input text-black w-full border-red-500 rounded-none input-bordered" />
             <div className="modal-action">
-              <label htmlFor="forgotPass" onClick={async () => {
-                const success = await sendPasswordResetEmail(
-                  email
-                );
-                if (success) {
-                  alert('Sent email');
-                }
-              }} style={{ backgroundColor: "#f73312" }} className="btn border-0 rounded-none">Send Email</label>
+              <label htmlFor="forgotPass" onClick={handleForgotPass} style={{ backgroundColor: "#f73312" }} className="btn border-0 rounded-none">Send Email</label>
               <label htmlFor="forgotPass" style={{ backgroundColor: "#f73312" }} className="btn border-0 rounded-none">Close</label>
             </div>
           </div>
