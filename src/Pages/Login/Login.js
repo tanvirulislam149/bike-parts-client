@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
@@ -13,6 +13,10 @@ import { useState } from 'react';
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [email, setEmail] = useState('');
+  const [sendPasswordResetEmail, sending, ResetError] = useSendPasswordResetEmail(auth);
+  const [loadingState, setLoadingState] = useState(false);
+
   let navigate = useNavigate();
   let location = useLocation();
   const [token] = useToken(user || gUser);
@@ -22,11 +26,12 @@ const Login = () => {
 
   useEffect(() => {
     if (token) {
+      setLoadingState(false);
       navigate(from, { replace: true });
     }
   }, [token, from, navigate])
 
-  if (loading || gLoading) {
+  if (loading || gLoading || loadingState) {
     return <Loading></Loading>
   }
 
@@ -45,9 +50,13 @@ const Login = () => {
     });
   }
 
+  if (user) {
+    setLoadingState(true);
+  }
 
 
   if (gUser) {
+    setLoadingState(true);
     // navigate(from, { replace: true });
     const userData = {
       name: gUser.user.displayName,
@@ -88,7 +97,7 @@ const Login = () => {
               <label class="label">
                 <span class="label-text">Email</span>
               </label>
-              <input type="text" name='email' placeholder="Enter Your Email" class="input border-red-500 rounded-none input-bordered" />
+              <input type="email" name='email' placeholder="Enter Your Email" class="input border-red-500 rounded-none input-bordered" />
               <label class="label">
                 <span class="label-text">Password</span>
               </label>
@@ -96,8 +105,11 @@ const Login = () => {
                 <input type={showPass ? "text" : "password"} name='password' placeholder="Enter Your Password" class="input border-red-500 rounded-none input-bordered w-full" />
                 <BiShow onClick={() => setShowPass(!showPass)} className='show-btn' />
               </div>
-              <label class="label">
+              <label class="label flex justify-between items-center">
                 <Link to="/register" className='label-text-alt link link-hover'><u>Create An Account</u></Link>
+                <div>
+                  <label htmlFor="forgotPass" className='label-text-alt text-black cursor-pointer'><u>Forgot Password</u></label>
+                </div>
               </label>
               <input style={{ backgroundColor: "#f73312" }} className="btn border-0 font-normal text-base rounded-none" type="submit" value="Login" />
             </div>
@@ -107,6 +119,28 @@ const Login = () => {
             <button onClick={handleGoogle} className='btn bg-white font-normal text-base hover:text-white hover:bg-black text-black border-2 border-red-500 rounded-none  md:w-80 my-4'> <FcGoogle className='w-6 h-6 mr-2' />Continue With Google</button>
           </div>
         </div>
+
+        {/* Put this part before </body> tag */}
+        <input type="checkbox" id="forgotPass" className="modal-toggle" />
+        <div className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg"></h3>
+            <p className='mb-3 text-black'>Enter Email For Reset Password</p>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} name='forgotPass' placeholder="Enter Your Email" class="input text-black w-full border-red-500 rounded-none input-bordered" />
+            <div className="modal-action">
+              <label htmlFor="forgotPass" onClick={async () => {
+                const success = await sendPasswordResetEmail(
+                  email
+                );
+                if (success) {
+                  alert('Sent email');
+                }
+              }} style={{ backgroundColor: "#f73312" }} className="btn border-0 rounded-none">Send Email</label>
+              <label htmlFor="forgotPass" style={{ backgroundColor: "#f73312" }} className="btn border-0 rounded-none">Close</label>
+            </div>
+          </div>
+        </div>
+
 
       </div>
     </div >
