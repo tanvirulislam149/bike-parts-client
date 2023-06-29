@@ -23,9 +23,8 @@ const Header = () => {
 
   const menu =
     <>
-      <li><Link className='md:py-0 font-bold text-xl text-white' to="/">Home</Link></li>
-      <li><Link className='md:py-0 font-bold text-xl text-white' to="/blogs">Blogs</Link></li>
-      {/* <li><Link className='md:py-0 font-bold' to="/myPortfolio">Portfolio</Link></li> */}
+      <li><Link className='md:py-0 font-bold text-xl text-white active:bg-red-500' to="/">Home</Link></li>
+      <li><Link className='md:py-0 font-bold text-xl text-white active:bg-red-500' to="/blogs">Blogs</Link></li>
 
     </>
   return (
@@ -45,13 +44,11 @@ const Header = () => {
               {menu}
               {
                 user ? <>
-                  <li><Link className='md:py-0 text-xl' to="/dashboard"><button class="font-bold">Dashboard</button></Link></li>
-                  {/* <p className='btn bg-white text-gray-900 font-bold'>{userName?.split(" ")[0]}</p> */}
+                  <li><Link className='md:py-0 text-xl active:bg-red-500' to="/dashboard"><button class="font-bold">Dashboard</button></Link></li>
                   <p className='text-white border-2 border-red-500 p-3 text-center w-10/12 mx-auto font-bold text-xl'>{user?.displayName?.split(" ")[0].toUpperCase()}</p>
-                  {/* <li><button onClick={() => signOut(auth)} class="md:py-0 text-xl login-btn btn rounded-none">LOG OUT</button></li> */}
-                  <li><Link onClick={() => signOut(auth)} className='md:py-0' to=""><button class="md:py-0 text-xl w-full login-btn btn rounded-none">LOG OUT</button></Link></li>
+                  <li><Link onClick={() => signOut(auth)} className='md:py-0' to=""><button class="md:py-0 text-xl w-full login-btn btn rounded-none active:bg-black">LOG OUT</button></Link></li>
                 </> :
-                  <li><Link className='md:py-0' to="/login"><button class="text-xl w-full login-btn btn rounded-none">LOGIN</button></Link></li>
+                  <li><Link className='md:py-0' to="/login"><button class="text-xl w-full login-btn btn active:bg-black rounded-none">LOGIN</button></Link></li>
               }
             </ul>
           </div>
@@ -60,13 +57,11 @@ const Header = () => {
               {menu}
               {
                 user ? <>
-                  <li><Link className='md:py-0' to="/dashboard"><button class="font-bold text-xl">Dashboard</button></Link></li>
-                  {/* <p className='bg-white text-gray-900 font-bold'>{userName?.split(" ")[0]}</p> */}
+                  <li><Link className='md:py-0 active:bg-red-500' to="/dashboard"><button class="font-bold text-xl">Dashboard</button></Link></li>
                   <p className='text-white border-2 border-red-500 p-2 m-0 my-auto font-bold text-xl'>{user?.displayName?.split(" ")[0].toUpperCase()}</p>
-                  {/* <li><button onClick={() => handleSignOut()} class="login-btn text-xl p-3 m-3 my-auto rounded-none btn">LOG OUT</button></li> */}
-                  <li><Link onClick={() => handleSignOut()} className='md:py-0' to=""><button class="login-btn text-xl mr-5 rounded-none btn">LOG OUT</button></Link></li>
+                  <li><Link onClick={() => handleSignOut()} className='md:py-0 active:bg-black' to=""><button class="login-btn  text-xl mr-5 rounded-none btn">LOG OUT</button></Link></li>
                 </> :
-                  <li><Link className='md:py-0' to="/login"><button class="login-btn text-xl rounded-none btn">LOGIN</button></Link></li>
+                  <li><Link className='md:py-0 active:bg-black' to="/login"><button class="login-btn text-xl rounded-none btn">LOGIN</button></Link></li>
               }
             </ul>
           </div>
