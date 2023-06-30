@@ -6,15 +6,8 @@ import auth from "../../../firebase.init";
 import "./Header.css";
 import logo from "../../../assets/bike-logo.png"
 
-const Header = () => {
+const Header = ({ name }) => {
   const [user, loading, error] = useAuthState(auth);
-  const [userName, setUserName] = useState();
-  console.log(user?.displayName);
-  useEffect(() => {
-    fetch(`https://autoparts-vsj8.onrender.com/headerName/${user?.email}`)
-      .then(res => res.json())
-      .then(data => setUserName(data.name))
-  }, [user])
 
   const handleSignOut = () => {
     signOut(auth);
@@ -45,7 +38,7 @@ const Header = () => {
               {
                 user ? <>
                   <li><Link className='md:py-0 text-xl active:bg-red-500' to="/dashboard"><button class="font-bold">Dashboard</button></Link></li>
-                  <p className='text-white border-2 border-red-500 p-3 text-center w-10/12 mx-auto font-bold text-xl'>{user?.displayName?.split(" ")[0].toUpperCase()}</p>
+                  <p className='text-white border-2 border-red-500 p-3 text-center w-10/12 mx-auto font-bold text-xl'>{user?.displayName ? user?.displayName?.split(" ")[0].toUpperCase() : name.split(" ")[0].toUpperCase()}</p>
                   <li><Link onClick={() => signOut(auth)} className='md:py-0' to=""><button class="md:py-0 text-xl w-full login-btn btn rounded-none active:bg-black">LOG OUT</button></Link></li>
                 </> :
                   <li><Link className='md:py-0' to="/login"><button class="text-xl w-full login-btn btn active:bg-black rounded-none">LOGIN</button></Link></li>
@@ -58,7 +51,7 @@ const Header = () => {
               {
                 user ? <>
                   <li><Link className='md:py-0 active:bg-red-500' to="/dashboard"><button class="font-bold text-xl">Dashboard</button></Link></li>
-                  <p className='text-white border-2 border-red-500 p-2 m-0 my-auto font-bold text-xl'>{user?.displayName?.split(" ")[0].toUpperCase()}</p>
+                  <p className='text-white border-2 border-red-500 p-2 m-0 my-auto font-bold text-xl'>{user?.displayName ? user?.displayName?.split(" ")[0].toUpperCase() : name.split(" ")[0].toUpperCase()}</p>
                   <li><Link onClick={() => handleSignOut()} className='md:py-0 active:bg-black' to=""><button class="login-btn  text-xl mr-5 rounded-none btn">LOG OUT</button></Link></li>
                 </> :
                   <li><Link className='md:py-0 active:bg-black' to="/login"><button class="login-btn text-xl rounded-none btn">LOGIN</button></Link></li>

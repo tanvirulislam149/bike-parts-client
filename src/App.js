@@ -21,18 +21,22 @@ import MyPortfolio from './Pages/MyPortfolio';
 import NotFound from './Pages/NotFound';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
 import Footer from './Pages/Home/Footer/Footer';
+import { useState } from 'react';
 
 function App() {
+  const [name, setName] = useState("");
+
+
   return (
     <div>
-      <Header></Header>
+      <Header name={name}></Header>
       <Routes>
         <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/purchase/:partsId" element={<RequiredAuth><Purchase></Purchase></RequiredAuth>}></Route>
         <Route path="/payment/:orderId" element={<RequiredAuth><PaymentPage></PaymentPage></RequiredAuth>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         {/* <Route path="/myPortfolio" element={<MyPortfolio></MyPortfolio>}></Route> */}
-        <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="/register" element={<Register setName={setName}></Register>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>

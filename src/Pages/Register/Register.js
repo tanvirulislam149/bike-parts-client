@@ -9,7 +9,7 @@ import useToken from '../useToken/useToken';
 import "./Register.css";
 import { BiShow } from 'react-icons/bi';
 
-const Register = () => {
+const Register = ({ setName }) => {
   const [createUserWithEmailAndPassword, cUser, cLoading, cError,] = useCreateUserWithEmailAndPassword(auth);
   const { register, handleSubmit, reset } = useForm();
   const [updateProfile, updating, uError] = useUpdateProfile(auth);
@@ -85,6 +85,7 @@ const Register = () => {
       name: user.displayName,
       email: user.email,
     }
+    setName(user.displayName);
     fetch("https://autoparts-vsj8.onrender.com/users", {
       method: "PUT",
       headers: {
@@ -118,7 +119,7 @@ const Register = () => {
                 <BiShow onClick={() => setShowConfimPass(!showConfimPass)} className='passShow-btn' />
               </div>
               <Link to="/login" className='label-text-alt link link-hover'><u>Have An Account? Go To Login</u></Link>
-              <input className='btn bg-red-600 rounded-none border-0 w-full font-normal text-base my-2' type="submit" value={"Sign Up"} />
+              <input style={{ backgroundColor: "#f73312" }} className='btn rounded-none border-0 w-full font-normal text-base my-2' type="submit" value={"Sign Up"} />
             </form>
           </div>
         </div>
