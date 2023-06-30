@@ -25,7 +25,7 @@ const PartsCard = (props) => {
         <p><span className='font-bold text-black'>Price (Per Piece):</span> {price}</p> */}
         <p className='font-bold text-2xl text-black'>${price}</p>
         <div class="card-actions">
-          <button onClick={goToPurchase} class="btn order-btn rounded-none border-0">Place Order</button>
+          <button onClick={goToPurchase} class="btn order-btn rounded-none border-0">Details</button>
         </div>
       </div>
     </div>
