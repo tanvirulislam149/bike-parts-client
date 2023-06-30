@@ -4,7 +4,7 @@ import HomePage from './Pages/Home/HomePage';
 import Header from "./Pages/Home/Header/Header"
 import Blogs from './Pages/Blogs';
 import Purchase from './Pages/Purchase';
-import Register from './Pages/Register';
+import Register from './Pages/Register/Register';
 import Login from "./Pages/Login/Login";
 import { ToastContainer } from 'react-toastify';
 import RequiredAuth from "./RequiredAuth";
