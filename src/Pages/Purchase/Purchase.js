@@ -190,11 +190,11 @@ const Purchase = () => {
                       : "Place Order"}
                   </button>
                   {
-                    orderId ? <button onClick={goToPurchase} className='btn bg-red-600 rounded-none font-normal border-0'>Make Payment</button> : ""
+                    !orderId ? <button onClick={goToPurchase} className='btn bg-red-600 rounded-none font-normal border-0'>Proceed To Checkout</button> : ""
                   }
                 </div>
                 {
-                  orderId ? <p className='text-sm md:mt-3'>Order placed without payment. To pay, please click the "MAKE PAYMENT" button.</p> : ""
+                  !orderId ? <p className='text-sm md:mt-3'>Order placed without payment. To pay, please click the "Proceed To Checkout" button.</p> : ""
                 }
                 {
                   error ? <div class="alert alert-error shadow-lg w-80 py-2 mt-5">
