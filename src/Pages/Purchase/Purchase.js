@@ -134,12 +134,12 @@ const Purchase = () => {
 
   return (
     <div className='bg-base-200'>
-      <div className='p-14'>
+      <div className='md:p-14 py-14'>
         <div className='md:flex bg-white py-10 justify-center'>
           <div>
-            <img style={{ width: "450px" }} className='w-96 border-0' src={part.picture} alt="" />
+            <img style={{ width: "450px" }} className='md:w-96 border-0 mx-auto' src={part.picture} alt="" />
           </div>
-          <div className='md:w-2/4 px-10'>
+          <div className='md:w-2/4 md:px-10 px-5'>
             <p className='text-4xl my-2 font-bold rajdhani-font orange-color'>{part?.name?.toUpperCase()}</p>
             <hr />
             <p className='text-3xl font-bold rajdhani-font orange-color my-5'>${part.price}</p>
@@ -169,13 +169,13 @@ const Purchase = () => {
             <div className='my-5'>
               <p>{part.quantity} in stock</p>
               <div className='my-5'>
-                <div className='flex items-center'>
+                <div className='md:flex items-center'>
                   <div className='flex items-center'>
                     <button onClick={handleDecrement} className='px-3 py-4 bg-red-100'><AiOutlineMinus /></button>
                     <input type="number" onChange={handleOrder} name='quantity' value={orderQuantity} placeholder='Enter Amount Your Want To Order' className="input input-bordered rounded-none border-red-500 w-28 input-base max-w-xs" />
                     <button onClick={handleIncrement} className='px-3 py-4 bg-red-100 mr-5'><AiOutlinePlus /></button>
                   </div>
-                  <button onClick={handlePlaceOrder} className='btn bg-red-600 hover:bg-black rounded-none font-normal mr-5 border-0' disabled={error ? "disabled" : ""}>
+                  <button onClick={handlePlaceOrder} className='btn my-4 bg-red-600 hover:bg-black rounded-none font-normal mr-5 border-0' disabled={error ? "disabled" : ""}>
                     {orderLoading ?
                       <ColorRing
                         visible={true}
@@ -193,7 +193,7 @@ const Purchase = () => {
                   }
                 </div>
                 {
-                  orderId ? <p className='text-sm mt-3'>Order placed without payment. To pay, please click the "MAKE PAYMENT" button.</p> : ""
+                  orderId ? <p className='text-sm md:mt-3'>Order placed without payment. To pay, please click the "MAKE PAYMENT" button.</p> : ""
                 }
                 {
                   error ? <div class="alert alert-error shadow-lg w-80 py-2 mt-5">
@@ -208,23 +208,21 @@ const Purchase = () => {
           </div>
         </div>
       </div>
-      <div className='my-0 px-28 py-14 bg-white'>
+      <div className='my-0 md:px-28 px-5 py-14 bg-white'>
         <p className='text-black text-5xl rajdhani-font border-black border-b-2 pb-2 w-52'>Discription</p>
-        <div className='w-4/5 my-10 leading-8'>
+        <div className='md:w-4/5 my-10 leading-8'>
           <p>Silver with Mirror Cut Facewheels by SpareGold. The SpareGold custom aftermarket alloy builds a new dynamic trend featuring awheel behind a wheel look. Previously non-manufacturable, SpareGold had to work closely with engineers for months until every corner of the Sebring was at just the right angle to be casted into metal without sacrificing aesthetic qualities. Two split five spoke designs overlap combining into a three dimensional mesh pattern. Each spoke is angled just enough to create sharp edges posturizing a truly refined look on the customwheel</p>
           <p className='font-bold text-2xl rajdhani-font my-8'>Featured</p>
-          <li>Plastic Hub Centering Ring Ensures a Vibration Free Ride</li>
-          <li>Tight Runout Tolerances Ensure thatwheels are Straight, Round and have Even Thickness
-          </li>
-          <li>Factory Balancing ofwheels to Minimize Vibrations and Need forwheel Weights</li>
-          <li>Load Rating Specified on Everywheel</li>
-          <li>Compatible with All Original Equipment Tire Pressure Monitoring System (TPMS) Sensors
-          </li>
-          <li>Correct Fitment for Your Vehicle</li>
-          <li>Precise and Correctwheel Offset for Your Vehicle</li>
-          <li>Metal Decorative Rivets and Extra Thick Emblems Ensure Lasting Good Looks</li>
-          <li>TSW provides a five-year structural warranty</li>
-          <li>2-Year Warranty on Chrome and Silver Finish</li>
+          <li>Plastic Hub Centering Ring Ensures a Vibration Free Ride.</li>
+          <li>Tight Runout Tolerances Ensure thatwheels are Straight, Round and have Even Thickness.</li>
+          <li>Factory Balancing ofwheels to Minimize Vibrations and Need forwheel Weights.</li>
+          <li>Load Rating Specified on Everywheel.</li>
+          <li>Compatible with All Original Equipment Tire Pressure Monitoring System (TPMS) Sensors.</li>
+          <li>Correct Fitment for Your Vehicle.</li>
+          <li>Precise and Correctwheel Offset for Your Vehicle.</li>
+          <li>Metal Decorative Rivets and Extra Thick Emblems Ensure Lasting Good Looks.</li>
+          <li>TSW provides a five-year structural warranty.</li>
+          <li>2-Year Warranty on Chrome and Silver Finish.</li>
         </div>
       </div>
     </div>
