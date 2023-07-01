@@ -13,7 +13,7 @@ const Payment = ({ order, obj }) => {
 
   return (
     <div className='w-full mx-auto'>
-      <div class="card mb-5 w-full md:w-96 bg-base-100 shadow-xl">
+      <div class="card mb-5 w-full bg-white rounded-none shadow-lg">
         <div class="card-body text-left">
           <Elements stripe={stripePromise}>
             <CheckoutForm order={order} obj={obj} />

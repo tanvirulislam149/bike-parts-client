@@ -148,12 +148,12 @@ const CheckoutForm = ({ order, obj }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <CardElement />
-        <button className='btn border-0 w-full bg-accent-focus mt-5' type="submit" disabled={!stripe || !elements}>
+        <button className='btn border-0 w-full bg-red-600 hover:bg-black rounded-none mt-5' type="submit" disabled={!stripe || !elements}>
           Pay
         </button>
       </form>
       {
-        cardError ? <p className='text-red-500'>{cardError}</p> : ""
+        cardError ? <p className='text-red-500 mt-2'>{cardError}</p> : ""
       }
     </div>
 
