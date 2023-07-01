@@ -1,14 +1,17 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { ColorRing } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 
-const CheckoutForm = ({ order }) => {
+const CheckoutForm = ({ order, obj }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const toastId = React.useRef(null);
 
 
+  const { phone, setPhone, address, setAddress } = obj;
 
   const { price, userName, email, _id } = order;
 
@@ -30,8 +33,50 @@ const CheckoutForm = ({ order }) => {
     }
   }, [price])
 
+
+  // toast(
+  //   <div className='flex items-center'>
+  //     <ColorRing
+  //       visible={true}
+  //       height="40"
+  //       width="40"
+  //       ariaLabel="blocks-loading"
+  //       wrapperStyle={{}}
+  //       wrapperClass="blocks-wrapper"
+  //       colors={["white", "white", "white", "white", "white"]}
+  //     />
+  //     <p>Loading...</p>
+  //   </div>
+  //   , { autoClose: false }
+  // )
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    toast(
+      <div className='flex items-center'>
+        <ColorRing
+          visible={true}
+          height="40"
+          width="40"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={["white", "white", "white", "white", "white"]}
+        />
+        <p>Loading...</p>
+      </div>
+      , { autoClose: false }
+    )
+
+    if (!phone || !address) {
+      toast.dismiss(toastId.current);
+      setCardError("Please enter address and phone number.");
+      return;
+    }
+
+
     if (!elements || !stripe) {
       return;
     }
@@ -48,6 +93,7 @@ const CheckoutForm = ({ order }) => {
     });
 
     if (error) {
+      toast.dismiss(toastId.current);
       setCardError(error.message);
     }
     else {
@@ -68,16 +114,22 @@ const CheckoutForm = ({ order }) => {
     )
 
     if (intentError) {
+      toast.dismiss(toastId.current);
       setCardError(intentError?.message)
     }
     else {
       setCardError("")
+      toast.dismiss(toastId.current);
       toast.success("Your Payment Is Completed")
       console.log(paymentIntent);
+      setAddress("");
+      setPhone("");
       if (paymentIntent?.id) {
         const paidStatus = {
           transactionId: paymentIntent?.id,
           orderId: _id,
+          address: address,
+          phone: phone
         }
         fetch("https://autoparts-vsj8.onrender.com/updateOrder", {
           method: "PUT",
@@ -88,7 +140,6 @@ const CheckoutForm = ({ order }) => {
         })
           .then(res => res.json())
           .then(data => console.log(data))
-
       }
     }
   };
