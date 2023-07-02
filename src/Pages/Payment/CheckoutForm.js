@@ -121,6 +121,7 @@ const CheckoutForm = ({ order, obj }) => {
       setCardError("")
       toast.dismiss(toastId.current);
       toast.success("Your Payment Is Completed")
+      card.clear();
       console.log(paymentIntent);
       setAddress("");
       setPhone("");

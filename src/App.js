@@ -22,9 +22,11 @@ import NotFound from './Pages/NotFound';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
 import Footer from './Pages/Home/Footer/Footer';
 import { useState } from 'react';
+import DeleteModal from './Pages/DeleteModal';
 
 function App() {
   const [name, setName] = useState("");
+  const [modal, setModal] = useState(false);
 
 
   return (
@@ -40,16 +42,17 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>
-          <Route path="/dashboard/myOrders" element={<MyOrders></MyOrders>}></Route>
+          <Route path="/dashboard/myOrders" element={<MyOrders setModal={setModal} modal={modal}></MyOrders>}></Route>
           <Route path='/dashboard/addReview' element={<AddReview></AddReview>}></Route>
           <Route index element={<MyProfile></MyProfile>}></Route>
-          <Route path='/dashboard/allOrders' element={<RequiredAuth><RequiredAdmin><ManageAllOrders></ManageAllOrders></RequiredAdmin></RequiredAuth>}></Route>
+          <Route path='/dashboard/allOrders' element={<RequiredAuth><RequiredAdmin><ManageAllOrders setModal={setModal} modal={modal}></ManageAllOrders></RequiredAdmin></RequiredAuth>}></Route>
           <Route path='/dashboard/makeAdmin' element={<RequiredAuth><RequiredAdmin><MakeAdmin></MakeAdmin></RequiredAdmin></RequiredAuth>}></Route>
           <Route path='/dashboard/addProduct' element={<RequiredAuth><RequiredAdmin><AddProduct></AddProduct></RequiredAdmin></RequiredAuth>}></Route>
           <Route path='/dashboard/manageProducts' element={<RequiredAuth><RequiredAdmin><ManageProducts></ManageProducts></RequiredAdmin></RequiredAuth>}></Route>
         </Route>
       </Routes>
       <Footer></Footer>
+      <DeleteModal setModal={setModal} />
       <ToastContainer
         position="top-center"
         autoClose={5000}

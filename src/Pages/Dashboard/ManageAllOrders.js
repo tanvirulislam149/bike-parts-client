@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import auth from '../../firebase.init';
 import DeleteModal from '../DeleteModal';
 
-const ManageAllOrders = () => {
+const ManageAllOrders = ({ setModal, modal }) => {
   const [allOrders, setAllOrders] = useState([]);
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
   const [id, setId] = useState();
   useEffect(() => {
     fetch("https://autoparts-vsj8.onrender.com/allOrders", {
@@ -114,7 +114,7 @@ const ManageAllOrders = () => {
             </tbody>
           </table>
         </div>
-        <DeleteModal setModal={setModal}></DeleteModal>
+        {/* <DeleteModal setModal={setModal}></DeleteModal> */}
       </div>
     </div>
   );

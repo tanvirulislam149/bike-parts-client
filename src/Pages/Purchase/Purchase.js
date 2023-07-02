@@ -194,7 +194,10 @@ const Purchase = () => {
                   }
                 </div>
                 {
-                  orderId ? <p className='text-sm md:mt-3'>Order placed without payment. To pay, please click the "Proceed To Checkout" button.</p> : ""
+                  orderId ? <>
+                    <p className='text-sm md:mt-3'>Order placed without payment. To pay, please click the "Proceed To Checkout" button.</p>
+                    <p className='text-sm md:mt-3'>To see the order, Go to "My Orders" in Dashboard.</p>
+                  </> : ""
                 }
                 {
                   error ? <div class="alert alert-error shadow-lg w-80 py-2 mt-5">
