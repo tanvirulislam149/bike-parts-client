@@ -22,7 +22,7 @@ const Reviews = () => {
 
   return (
     <div className='mx-3 md:mx-0 mb-20 border-0 p-3 text-center'>
-      <h2 className='text-4xl my-14 orange-color font-bold'>What people think about us</h2>
+      <h2 className='text-5xl my-14 orange-color font-bold rajdhani-font'>What people think about us</h2>
       <div className="swiper-cont">
         <i className="icon-arrow-long-right review-swiper-button-prev"><BsFillArrowLeftCircleFill className="left-arrow" /></i>
         <i className="icon-arrow-long-left review-swiper-button-next"><BsFillArrowRightCircleFill className="right-arrow" /></i>
@@ -64,7 +64,8 @@ const Reviews = () => {
           {
             reviews.map((r, index) => <SwiperSlide key={index} className="py-10 border-2  border-black bg-white rounded-none text-black">{
               <>
-                <p className="font-bold text-3xl mb-3">{r.name}</p>
+                <p className="font-bold text-4xl mb-3 rajdhani-font">{r.name}</p>
+                <p className="font-bold text-4xl mb-3 rajdhani-font">{r.ratings}.0</p>
                 <Rating
                   initialRating={r.ratings}
                   readonly

@@ -28,3 +28,7 @@ code {
   --swiper-navigation-size: 30px !important;
   --swiper-navigation-color: #f73312;
 }
+
+.style-module_emptyIcons__Bg-FZ {
+  display: flex !important;
+}

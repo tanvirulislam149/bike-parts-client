@@ -37,7 +37,7 @@ const AddReview = () => {
 
   return (
     <div>
-      <p className='text-center text-5xl text-accent-focus'>Review</p>
+      <p className='text-5xl rajdhani-font orange-color'>Add Review</p>
       <form className='md:w-64 mx-auto' id='form' onSubmit={handleSubmit}>
         <label class="label">
           <span class="label-text">Name</span>
