@@ -5,6 +5,7 @@ import { signOut } from 'firebase/auth';
 import auth from "../../../firebase.init";
 import "./Header.css";
 import logo from "../../../assets/bike-logo.png"
+import { TfiMenuAlt } from "react-icons/tfi";
 
 const Header = ({ name }) => {
   const [user, loading, error] = useAuthState(auth);
@@ -31,7 +32,8 @@ const Header = ({ name }) => {
         <div class="navbar-end">
           <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+              {/* <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg> */}
+              <TfiMenuAlt className='w-8 h-8' />
             </label>
             <ul tabindex="0" class="menu rounded-none dropdown-content p-2 shadow bg-black w-52 mt-4">
               {menu}
