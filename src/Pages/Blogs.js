@@ -1,9 +1,10 @@
 import React from 'react';
+import coming from "../assets/coming_soon.avif"
 
 const Blogs = () => {
-    return (
-        <div className='md:m-16 m-5'>
-            <p className='text-4xl text-center text-accent-focus'>Question & Answer</p>
+  return (
+    <div className='md:m-16 m-5 flex justify-center'>
+      {/* <p className='text-4xl text-center text-accent-focus'>Question & Answer</p>
             <p>1) Que:  How will you improve the performance of a React Application?</p>
             <p>Ans: React compares the actual changes with virtual DOM which is saved in a state. So when the state is changed the children components re-renders. This makes an app slower. so we should use siblings components instead of children to optimize performance. Beside this, we can use React.memo() to memoizing a component. That means any component which is not need rendering will use previous rendered value to optimize performance.</p>
             <p>2) Que: What are the different ways to manage a state in a React application?</p>
@@ -13,9 +14,10 @@ const Blogs = () => {
             <p>4) Que:  Why you do not set the state directly in React. For example, if you have const [products, setProducts] = useState([]). Why you do not set products = [...] instead, you use the setProducts?</p>
             <p>Ans: React follows a unidirectional data flow. That means you can only set value of state in one direction and that is by setState. Because React always compares previous data with new data and save the changes and re-renders it. But if you set data directly to a state in won't be able to compare and for this many problems can happen like app crash and etc.   </p>
             <p>5) Que: What is a unit test? Why should write unit tests?</p>
-            <p>Ans: Unit testing is a software testing system which is performed to watch if a software is working perfectly as expected or not. A unit can be a individual function, module , object etc. The part is needed to test in development process is unit. Unit testing is important because by it we check everything.  </p>
-        </div>
-    );
+            <p>Ans: Unit testing is a software testing system which is performed to watch if a software is working perfectly as expected or not. A unit can be a individual function, module , object etc. The part is needed to test in development process is unit. Unit testing is important because by it we check everything.  </p> */}
+      <img src={coming} alt="" />
+    </div>
+  );
 };
 
 export default Blogs;
