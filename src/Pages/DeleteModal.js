@@ -1,4 +1,5 @@
 import React from 'react';
+import { MdDeleteForever } from "react-icons/md";
 
 const DeleteModal = ({ setModal }) => {
   return (
@@ -9,11 +10,16 @@ const DeleteModal = ({ setModal }) => {
       {/* <!-- Put this part before </body> tag-- > */}
       <input type="checkbox" id="deleteModal" class="modal-toggle" />
       <div class="modal">
-        <div class="modal-box relative">
+        <div class="modal-box rounded-none p-7 relative">
           {/* <label for="deleteModal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label> */}
-          <h3 class="text-lg font-bold my-10">Are You Sure You Want To Delete This?</h3>
-          <label for="deleteModal" onClick={() => setModal(true)} className='btn mx-5 btn-error'>Yes</label>
-          <label for="deleteModal" class="btn btn-success mx-5">No</label>
+          <div className='flex justify-center '>
+            <MdDeleteForever className='w-12 h-12 border-red-500 text-red-500 border-2 p-2' style={{ borderRadius: "50%" }} />
+          </div>
+          <h3 class="text-lg font-bold mt-2 mb-5">Are You Sure You Want To Delete This?</h3>
+          <div className='text-right'>
+            <label for="deleteModal" class="btn rounded-none bg-white text-black hover:text-white mx-5">Cancel</label>
+            <label for="deleteModal" onClick={() => setModal(true)} className='btn rounded-none mx-0 btn-error'>Delete</label>
+          </div>
         </div>
       </div>
     </div >
