@@ -71,7 +71,6 @@ const AddReview = () => {
 
   const ratingChanged = (newRating) => {
     setRating(newRating);
-    // console.log(newRating);
   };
 
   return (

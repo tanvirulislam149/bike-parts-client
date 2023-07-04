@@ -20,7 +20,6 @@ const Dashboard = () => {
         <div className='flex justify-between m-3 items-center lg:hidden'>
           <p className='text-3xl font-bold'>Dashboard</p>
           <label for="dashboard-drawer" class="btn border-0 bg-black">
-            {/* <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg> */}
             <TfiMenuAlt className='w-7 h-7' />
           </label>
         </div>
