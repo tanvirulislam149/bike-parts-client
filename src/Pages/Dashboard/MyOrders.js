@@ -65,46 +65,46 @@ const MyOrders = ({ setModal, modal }) => {
   }
   return (
     <div>
-      <p className='text-5xl rajdhani-font orange-color my-5'>My Orders</p>
-      <hr />
       {
-        orders ?
-          <div class="overflow-x-auto">
-            <table class="table table-zebra w-full">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Email</th>
-                  <th>Item</th>
-                  <th>Quantity</th>
-                  <th>Total Price</th>
-                  <th>Button</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  orders.map((o, index) =>
-                    <>
-                      <tr key={index}>
-                        <th>{index + 1}</th>
-                        <td>{o.email}</td>
-                        <td>{o.item}</td>
-                        <td>{o.quantity}</td>
-                        <td>{o.price}</td>
-                        <td>{o.pay === "unpaid" && <><button onClick={() => goToPurchase(o._id)} class="btn mr-2 btn-xs btn-success">Pay</button><label for="deleteModal" onClick={() => setId(o._id)} class="btn modal-button btn-xs btn-error">Cancel</label></>}</td>
-                        <td>{o.pay === "unpaid" ? "Unpaid" : <>
-                          <p>Transaction Id:</p>
-                          <p>{o.transactionId}</p>
-                        </>}</td>
-                      </tr>
-                    </>
-                  )
-                }
+        orders.length ?
+          <>
+            <p className='text-5xl rajdhani-font orange-color my-5'>My Orders</p>
+            <div class="overflow-x-auto">
+              <table class="table table-zebra w-full">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Email</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Button</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    orders.map((o, index) =>
+                      <>
+                        <tr key={index}>
+                          <th>{index + 1}</th>
+                          <td>{o.email}</td>
+                          <td>{o.item}</td>
+                          <td>{o.quantity}</td>
+                          <td>{o.price}</td>
+                          <td>{o.pay === "unpaid" && <><button onClick={() => goToPurchase(o._id)} class="btn mr-2 btn-xs btn-success">Pay</button><label for="deleteModal" onClick={() => setId(o._id)} class="btn modal-button btn-xs btn-error">Cancel</label></>}</td>
+                          <td>{o.pay === "unpaid" ? "Unpaid" : <>
+                            <p>Transaction Id:</p>
+                            <p>{o.transactionId}</p>
+                          </>}</td>
+                        </tr>
+                      </>
+                    )
+                  }
 
-              </tbody>
-            </table>
-          </div> :
+                </tbody>
+              </table>
+            </div> </> :
           <p className='text-center text-4xl rajdhani-font'>No Orders Found.</p>
       }
       {/* <DeleteModal setModal={setModal}></DeleteModal> */}

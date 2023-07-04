@@ -41,7 +41,7 @@ function App() {
         <Route path="/register" element={<Register setName={setName}></Register>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
-        <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+        <Route path='/dashboard' element={<RequiredAuth><Dashboard></Dashboard></RequiredAuth>}>
           <Route path="/dashboard/myOrders" element={<MyOrders setModal={setModal} modal={modal}></MyOrders>}></Route>
           <Route path='/dashboard/addReview' element={<AddReview></AddReview>}></Route>
           <Route index element={<MyProfile></MyProfile>}></Route>
