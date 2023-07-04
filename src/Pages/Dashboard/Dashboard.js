@@ -12,6 +12,8 @@ const Dashboard = () => {
       .then(res => res.json())
       .then(data => setAdmin(data));
   }, [user])
+
+  // just checking.
   return (
     <div class="drawer drawer-mobile">
       <input id="dashboard-drawer" type="checkbox" class="drawer-toggle" />
