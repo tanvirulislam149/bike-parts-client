@@ -23,13 +23,13 @@ const Header = ({ name }) => {
     </>
   return (
     <div className='sticky top-0 z-50 rajdhani-font'>
-      <div class="px-2 md:px-10 navbar text-white bg-black border-b-4 border-red-500 py-0">
+      <div class="px-5 navbar text-white bg-black border-b-4 border-red-500 py-0">
         <div class="navbar">
           <Link className='text-2xl md:pl-10 orange-color font-bold' to="/">
             <img className='w-24' src={logo} alt="" />BikeParts
           </Link>
         </div>
-        <div class="navbar-end">
+        <div class="navbar-end w-11/12">
           <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost lg:hidden">
               <TfiMenuAlt className='w-8 h-8' />
@@ -46,14 +46,14 @@ const Header = ({ name }) => {
               }
             </ul>
           </div>
-          <div class="navbar-end hidden lg:flex">
+          <div class="navbar-end w-full hidden lg:flex">
             <ul class="menu menu-horizontal p-0">
               {menu}
               {
                 user ? <>
                   <li><Link className='md:py-0 active:bg-red-500' to="/dashboard"><button class="font-bold text-xl">Dashboard</button></Link></li>
                   <p className='text-white border-2 border-red-500 p-2 m-0 my-auto font-bold text-xl'>{user?.displayName ? user?.displayName?.split(" ")[0].toUpperCase() : name.split(" ")[0].toUpperCase()}</p>
-                  <li><Link onClick={() => handleSignOut()} className='md:py-0 active:bg-black' to=""><button class="login-btn  text-xl mr-5 rounded-none btn">LOG OUT</button></Link></li>
+                  <li><Link onClick={() => handleSignOut()} className='md:py-0 active:bg-black' to=""><button class="login-btn text-xl rounded-none btn">LOG OUT</button></Link></li>
                 </> :
                   <li><Link className='md:py-0 active:bg-black' to="/login"><button class="login-btn text-xl rounded-none btn">LOGIN</button></Link></li>
               }

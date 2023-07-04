@@ -20,7 +20,8 @@ const Summary = () => {
         <div className='border-b-2 w-20 mx-10 border-black'></div>
         <div className='border-b-2 w-20 border-black'></div>
       </div>
-      <div className='md:flex justify-center items-center text-center my-10'>
+      {/* <div className='md:flex justify-center items-center text-center my-10'> */}
+      <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 text-center my-10'>
         <div className='mx-20 my-10 md:my-0'>
           <img className='w-28 mx-auto' src="https://i.ibb.co/M9rmvZ3/img1-removebg-preview.png" alt="" />
           <p className='text-5xl my-7 font-bold text-black'>
