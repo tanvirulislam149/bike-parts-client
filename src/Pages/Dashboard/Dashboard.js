@@ -3,17 +3,30 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { TfiMenuAlt } from 'react-icons/tfi';
+import Loading from '../Loading';
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [admin, setAdmin] = useState();
+  const [pageLoading, setPageLoading] = useState(false);
+
+
   useEffect(() => {
-    fetch(`https://autoparts-vsj8.onrender.com/checkAdmin/${user?.email}`)
-      .then(res => res.json())
-      .then(data => setAdmin(data));
+    setPageLoading(true);
+    if (user) {
+      fetch(`https://autoparts-vsj8.onrender.com/checkAdmin/${user?.email}`)
+        .then(res => res.json())
+        .then(data => {
+          setAdmin(data);
+          setPageLoading(false);
+        });
+    }
   }, [user])
 
-  // just checking.
+  if (pageLoading) {
+    return <Loading />
+  }
+
   return (
     <div class="drawer drawer-mobile">
       <input id="dashboard-drawer" type="checkbox" class="drawer-toggle" />
