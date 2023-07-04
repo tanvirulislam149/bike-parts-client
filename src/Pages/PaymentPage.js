@@ -42,7 +42,7 @@ const PaymentPage = () => {
   }
 
   return (
-    <div className='md:flex justify-evenly text-center mx-4 my-10'>
+    <div className='lg:flex justify-evenly text-center mx-4 my-10'>
       <div className='md:w-96 w-full'>
         <p className='text-4xl rajdhani-font orange-color my-5 font-bold'>Billing Details</p>
         <form id="form">
@@ -66,13 +66,9 @@ const PaymentPage = () => {
           <input type="number" name='phone' placeholder='Enter Your Phone Number' value={phone} onChange={(e) => setPhone(e.target.value)} class="input p-3 rounded-none input-bordered w-full input-base" /> <br />
         </form>
       </div>
-      <div className='bg-base-200 px-10 text-left md:w-1/3 w-full rajdhani-font'>
+      <div className='bg-base-200 md:px-10 p-5 my-5 text-left md:w-1/3 w-full rajdhani-font'>
         <p className='text-4xl rajdhani-font my-5 font-bold'>Your Order</p>
         <p className='flex items-center text-lg font-bold'>{order.item?.toUpperCase()} <RxCross2 className='mx-2 stroke-1 text-black' /> {order.quantity}</p>
-        {/* <label class="label">
-          <span class="label-text">Ordered Item Quantity:</span>
-        </label> */}
-        {/* <input type="text" name='email' value={order.quantity} disabled class="input input-bordered w-full input-sm" /> <br /> */}
         <p className='mt-3'>Shipping</p>
         <p className='text-2xl mb-6'>Free Shipping</p>
         <div className='flex text-3xl my-3'>
