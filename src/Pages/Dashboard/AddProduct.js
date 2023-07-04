@@ -83,7 +83,7 @@ const AddProduct = () => {
       <form onSubmit={handleSubmit(onSubmit)} id="form">
         <input type="text" {...register("name", { required: true })} placeholder="Enter Product Name" class="input my-2 w-full rounded-none border-red-500 input-bordered" />
         <input type="number" {...register("price", { required: true })} placeholder="Enter Product Price" class="input w-full rounded-none border-red-500 my-2 input-bordered" />
-        <input type="file" {...register("picture", { required: true })} placeholder="Enter Product Image Url" class="input w-full rounded-none border-red-500 my-2 input-bordered" />
+        <input type="file" {...register("picture", { required: true })} placeholder="Enter Product Image Url" class="input picture w-full rounded-none border-red-500 my-2 p-0 input-bordered" />
         <input type="description" {...register("description", { required: true })} placeholder="Enter Product Description" class="input w-full rounded-none border-red-500 my-2 input-bordered" />
         <input type="number" {...register("quantity", { required: true })} placeholder="Enter Product Quantity" class="input w-full rounded-none border-red-500 my-2 input-bordered" />
         <input className='btn bg-red-500 rounded-none font-semibold border-0 w-full my-2' type="submit" value={"Add Product"} />
