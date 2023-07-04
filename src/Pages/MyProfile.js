@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import auth from '../firebase.init';
 import Loading from './Loading';
 import { ColorRing } from 'react-loader-spinner';
+import axios from 'axios';
 
 const MyProfile = () => {
   const [user, loading, uError] = useAuthState(auth);
@@ -16,15 +17,16 @@ const MyProfile = () => {
 
   useEffect(() => {
     setPageLoading(true);
-    fetch(`https://autoparts-vsj8.onrender.com/userData/${user?.email}`)
-      .then(res => res.json())
-      .then(data => {
-        setPageLoading(false);
-        setPerson(data);
-        setAddress(data.address);
-        setEdu(data.education);
-        setPhone(data.phone);
-      });
+    axios(`https://autoparts-vsj8.onrender.com/userData/${user?.email}`)
+      .then(res => {
+        if (res.data) {
+          setPageLoading(false);
+          setPerson(res.data);
+          setAddress(res.data.address);
+          setEdu(res.data.education);
+          setPhone(res.data.phone);
+        }
+      })
   }, [user])
 
   if (pageLoading || loading) {

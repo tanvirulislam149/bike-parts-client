@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { TfiMenuAlt } from 'react-icons/tfi';
 import Loading from '../Loading';
+import axios from 'axios';
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
@@ -14,12 +15,12 @@ const Dashboard = () => {
   useEffect(() => {
     setPageLoading(true);
     if (user) {
-      fetch(`https://autoparts-vsj8.onrender.com/checkAdmin/${user?.email}`)
-        .then(res => res.json())
-        .then(data => {
-          setAdmin(data);
+      axios(`https://autoparts-vsj8.onrender.com/checkAdmin/${user?.email}`)
+        .then(res => {
+          console.log(res);
+          setAdmin(res.data);
           setPageLoading(false);
-        });
+        })
     }
   }, [user])
 

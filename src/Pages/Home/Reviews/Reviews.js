@@ -82,7 +82,7 @@ const Reviews = () => {
                     activeColor="#FFDE2B"
                   />
                 </div>
-                <p className="text-lg pt-2 px-10"><BsQuote className="w-10 h-10" /> {r.text}. Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit facere officiis molestiae! Sint explicabo minus quojkgh.</p>
+                <p className="text-lg pt-2 px-10"><BsQuote className="w-10 h-10" /> {r.text} Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit facere officiis molestiae! Sint explicabo minus quojkgh.</p>
               </>
             }</SwiperSlide>)
           }
