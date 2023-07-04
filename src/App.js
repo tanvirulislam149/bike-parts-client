@@ -48,7 +48,7 @@ function App() {
           <Route path='/dashboard/allOrders' element={<RequiredAuth><RequiredAdmin><ManageAllOrders setModal={setModal} modal={modal}></ManageAllOrders></RequiredAdmin></RequiredAuth>}></Route>
           <Route path='/dashboard/makeAdmin' element={<RequiredAuth><RequiredAdmin><MakeAdmin></MakeAdmin></RequiredAdmin></RequiredAuth>}></Route>
           <Route path='/dashboard/addProduct' element={<RequiredAuth><RequiredAdmin><AddProduct></AddProduct></RequiredAdmin></RequiredAuth>}></Route>
-          <Route path='/dashboard/manageProducts' element={<RequiredAuth><RequiredAdmin><ManageProducts></ManageProducts></RequiredAdmin></RequiredAuth>}></Route>
+          <Route path='/dashboard/manageProducts' element={<RequiredAuth><RequiredAdmin><ManageProducts setModal={setModal} modal={modal}></ManageProducts></RequiredAdmin></RequiredAuth>}></Route>
         </Route>
       </Routes>
       <Footer></Footer>
