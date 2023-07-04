@@ -9,8 +9,8 @@ import { toast } from 'react-toastify';
 const ManageAllOrders = ({ setModal, modal }) => {
   const [allOrders, setAllOrders] = useState([]);
   const [pageLoading, setPageLoading] = useState(false);
-  const [id, setId] = useState();
   const toastId = React.useRef(null);
+  const [id, setId] = useState();
 
 
   useEffect(() => {
@@ -134,7 +134,7 @@ const ManageAllOrders = ({ setModal, modal }) => {
   return (
     <div>
       <div>
-        <p className='text-5xl text-accent-focus rajdhani-font orange-color my-5'>Manage All Orders</p>
+        <p className='text-5xl rajdhani-font orange-color my-5'>Manage All Orders</p>
         <div class="overflow-x-auto">
           <table class="table table-zebra w-full">
             <thead>
