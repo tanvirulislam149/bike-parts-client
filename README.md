@@ -1,6 +1,6 @@
-# AutoParts Manufacturer Ltd.
+# BikeParts Manufacturer Ltd.
 
-TO SEE THE WEBSITE, [Click Here](https://auto-parts-client.vercel.app/).
+TO SEE THE WEBSITE, [Click Here](https://bike-parts.vercel.app/).
 
 ### Admin Credential
 Email - admin@gmail.com <br/>
