@@ -9,3 +9,6 @@
   height: 25px;
   cursor: pointer;
 }
+.divide-line {
+  width: 200px !important;
+}
