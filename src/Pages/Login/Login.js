@@ -93,7 +93,7 @@ const Login = () => {
   return (
     <div class="hero h-screen bg-base-200">
       <div class="md:w-2/4 w-full mb-5 py-10 hero-content">
-        <div class="card w-full max-w-sm shadow-2xl rounded-none pb-8 bg-base-100">
+        <div class="card w-48 max-w-sm shadow-2xl rounded-none pb-8 bg-base-100">
           <form onSubmit={handleSignIn}>
             <div class="card-body">
               <p className='text-4xl text-center font-bold orange-color rajdhani-font'>Login</p>
