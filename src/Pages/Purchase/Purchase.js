@@ -138,7 +138,7 @@ const Purchase = () => {
       <div className='md:p-14 py-14'>
         <div className='md:flex bg-white py-10 justify-center'>
           <div>
-            <Magnifier className='md:w-96 border-0 mx-auto' src={part.picture} width={450} mgShape="square" mgWidth={250} mgHeight={250} />
+            <Magnifier className='image border-0 mx-auto' src={part.picture} mgShape="square" mgWidth={250} mgHeight={250} />
           </div>
           <div className='md:w-2/4 md:px-10 px-5'>
             <p className='text-4xl my-2 font-bold rajdhani-font orange-color'>{part?.name?.toUpperCase()}</p>

@@ -9,7 +9,7 @@ const Footer = () => {
   const date = new Date().getFullYear();
   return (
     <footer>
-      <div class="footer p-20 bg-stone-900 text-white text-white-content">
+      <div class="footer md:p-20 p-5 bg-stone-900 text-white text-white-content">
         <div>
           <div className='text-2xl flex orange-color font-bold rajdhani-font'>
             <img className='w-24' src={logo} alt="" />
@@ -46,7 +46,7 @@ const Footer = () => {
           <a class="link link-hover">Cookie policy</a>
         </div>
       </div>
-      <p className='py-5 px-20 text-sm bg-black text-white'>Copyright © {date}. Developed by TANVIR. All Rights Reserved.</p>
+      <p className='py-5 md:px-20 px-5 text-sm bg-black text-white'>Copyright © {date}. Developed by TANVIR. All Rights Reserved.</p>
     </footer>
   );
 };
