@@ -9,28 +9,17 @@ import Summary from './Summary';
 import HotDeal from './HotDeal/HotDeal';
 
 const HomePage = () => {
-  const [homeLoading, setHomeLoading] = useState(true);
   return (
     <div>
-      {
-        homeLoading ? "" :
-          <>
-            <Banner></Banner>
-            <Facilities></Facilities>
-          </>
-
-      }
-      <Parts setHomeLoading={setHomeLoading}></Parts>
-      {
-        homeLoading ? "" :
-          <>
-            <HotDeal />
-            <Summary></Summary>
-            <Reviews></Reviews>
-            <Newsletter></Newsletter>
-            {/* <Footer></Footer> */}
-          </>
-      }
+      <>
+        <Banner></Banner>
+        <Facilities></Facilities>
+        <Parts></Parts>
+        <HotDeal />
+        <Summary></Summary>
+        <Reviews></Reviews>
+        <Newsletter></Newsletter>
+      </>
     </div>
   );
 };

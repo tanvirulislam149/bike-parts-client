@@ -4,10 +4,9 @@ import Loading from "../../Loading";
 import PartsCard from './PartsCard';
 import styles from "./Parts.module.css";
 
-const Parts = ({ setHomeLoading }) => {
+const Parts = () => {
   const { isLoading, error, data: parts } = useQuery('parts', () =>
     fetch('https://autoparts-vsj8.onrender.com/parts').then(res => {
-      setHomeLoading(false)
       return res.json();
     })
   )
