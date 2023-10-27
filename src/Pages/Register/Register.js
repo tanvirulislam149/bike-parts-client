@@ -8,6 +8,7 @@ import Loading from '../Loading';
 import useToken from '../useToken/useToken';
 import "./Register.css";
 import { BiShow } from 'react-icons/bi';
+import axios from 'axios';
 
 const Register = ({ setName }) => {
   const [createUserWithEmailAndPassword, cUser, cLoading, cError,] = useCreateUserWithEmailAndPassword(auth);
@@ -18,6 +19,8 @@ const Register = ({ setName }) => {
   const [token] = useToken(cUser);
   const [showPass, setShowPass] = useState(false);
   const [showConfimPass, setShowConfimPass] = useState(false);
+  const [registerLoading, setRegisterLoading] = useState(false);
+  const toastId = React.useRef(null);
 
   useEffect(() => {
     if (token) {
@@ -25,7 +28,7 @@ const Register = ({ setName }) => {
     }
   }, [token, navigate])
 
-  if (cLoading || loading || updating) {
+  if (cLoading || loading || updating || registerLoading) {
     return <Loading></Loading>
   }
 
@@ -57,15 +60,37 @@ const Register = ({ setName }) => {
         draggable: true,
         progress: undefined,
       });
-      reset();
       return
     }
-    const displayName = data.name;
-    const email = data.email;
-    const password = data.password;
-    await createUserWithEmailAndPassword(email, password);
-    await updateProfile({ displayName });
-    reset();
+    setRegisterLoading(true);
+
+
+    const image = data.picture[0];
+    const pic = new FormData();
+    pic.append("file", image);
+    pic.append("upload_preset", "creative_agencies")
+    pic.append("cloud_name", "tanvirulislam149")
+    axios.post("https://api.cloudinary.com/v1_1/tanvirulislam149/image/upload", pic)
+      .then(async res => {
+        if (res.data.url) {
+          console.log(res.data.url);
+          const displayName = data.name;
+          const email = data.email;
+          const password = data.password;
+          await createUserWithEmailAndPassword(email, password);
+          await updateProfile({ displayName, photoURL: res.data.url });
+          setRegisterLoading(false);
+          reset();
+        }
+      })
+      .catch(err => {
+        // console.log(err.message);
+        if (err.message === "Request failed with status code 401") {
+          setRegisterLoading(false);
+          toast.dismiss(toastId.current);
+          toast.error("Image upload failed. Please try again.");
+        }
+      })
   };
 
 
@@ -110,6 +135,7 @@ const Register = ({ setName }) => {
             <form onSubmit={handleSubmit(onSubmit)} id="form">
               <input type="text" {...register("name", { required: true })} placeholder="Enter Your Name" class="input my-2 w-full border-red-500 rounded-none input-bordered" />
               <input type="email" {...register("email", { required: true })} placeholder="Enter Your Email" class="input w-full border-red-500 rounded-none my-2 input-bordered" />
+              <input type="file" {...register("picture", { required: true })} placeholder="Enter Product Image Url" class="input picture w-full rounded-none border-red-500 my-2 p-0 input-bordered" />
               <div className='password-cont'>
                 <input type={showPass ? "text" : "password"} {...register("password", { required: true })} placeholder="Enter Password" class="input w-full border-red-500 rounded-none my-2 input-bordered" />
                 <BiShow onClick={() => setShowPass(!showPass)} className='passShow-btn' />
@@ -119,7 +145,7 @@ const Register = ({ setName }) => {
                 <BiShow onClick={() => setShowConfimPass(!showConfimPass)} className='passShow-btn' />
               </div>
               <Link to="/login" className='label-text-alt link link-hover'><u>Have An Account? Go To Login</u></Link>
-              <input style={{ backgroundColor: "#f73312" }} className='btn rounded-none border-0 w-full font-normal text-base my-2' type="submit" value={"Sign Up"} />
+              <input className='btn bg-red-500 rounded-none border-0 w-full font-normal text-base my-2' type="submit" value={"Sign Up"} />
             </form>
           </div>
         </div>

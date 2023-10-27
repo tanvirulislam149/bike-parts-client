@@ -45,7 +45,6 @@ const AddProduct = () => {
             price: data.price,
             quantity: data.quantity
           }
-          console.log(payload);
           fetch("https://autoparts-vsj8.onrender.com/parts", {
             method: "POST",
             headers: {
