@@ -25,20 +25,19 @@ import { useState } from 'react';
 import DeleteModal from './Pages/DeleteModal';
 
 function App() {
-  const [name, setName] = useState("");
   const [modal, setModal] = useState(false);
 
 
   return (
     <div>
-      <Header name={name}></Header>
+      <Header></Header>
       <Routes>
         <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/purchase/:partsId" element={<RequiredAuth><Purchase></Purchase></RequiredAuth>}></Route>
         <Route path="/payment/:orderId" element={<RequiredAuth><PaymentPage></PaymentPage></RequiredAuth>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         {/* <Route path="/myPortfolio" element={<MyPortfolio></MyPortfolio>}></Route> */}
-        <Route path="/register" element={<Register setName={setName}></Register>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
         <Route path='/dashboard' element={<RequiredAuth><Dashboard></Dashboard></RequiredAuth>}>

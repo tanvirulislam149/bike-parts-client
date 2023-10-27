@@ -10,7 +10,7 @@ import "./Register.css";
 import { BiShow } from 'react-icons/bi';
 import axios from 'axios';
 
-const Register = ({ setName }) => {
+const Register = () => {
   const [createUserWithEmailAndPassword, cUser, cLoading, cError,] = useCreateUserWithEmailAndPassword(auth);
   const { register, handleSubmit, reset } = useForm();
   const [updateProfile, updating, uError] = useUpdateProfile(auth);
@@ -110,7 +110,6 @@ const Register = ({ setName }) => {
       name: user.displayName,
       email: user.email,
     }
-    setName(user.displayName);
     fetch("https://autoparts-vsj8.onrender.com/users", {
       method: "PUT",
       headers: {
