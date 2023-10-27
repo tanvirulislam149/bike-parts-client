@@ -15,6 +15,7 @@ import Loading from "../../Loading";
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
+  console.log(reviews);
 
   useEffect(() => {
     setLoading(true);
@@ -67,6 +68,7 @@ const Reviews = () => {
                 {
                   reviews.map((r, index) => <SwiperSlide key={index} className="py-10 border-2  border-black bg-white rounded-none text-black">{
                     <>
+                      <img className="w-24 h-24 m-auto rounded-full my-3" src={r?.image} alt="" />
                       <p className="font-bold text-4xl mb-3 rajdhani-font">{r.name}</p>
                       <p className="font-bold text-4xl mb-0 rajdhani-font">{r.ratings.toString().length > 1 ? r.ratings : `${r.ratings}.0`}</p>
                       <div className="flex justify-center">

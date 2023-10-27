@@ -46,6 +46,7 @@ const AddReview = () => {
         email: user?.email,
         ratings: rating,
         text: text,
+        image: user?.photoURL
       }
       console.log(review);
       fetch("https://autoparts-vsj8.onrender.com/reviews", {
