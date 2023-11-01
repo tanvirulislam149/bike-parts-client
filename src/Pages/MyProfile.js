@@ -85,33 +85,7 @@ const MyProfile = () => {
     <div className='md:mx-4'>
       <p className='text-5xl rajdhani-font orange-color font-bold'>My Profile</p>
       <div className='md:flex md:w-4/6 justify-evenly'>
-        {/* <div className='md:w-80 text-center mx-auto md:mx-0 my-10'>
-          <p className='text-2xl text-accent-focus'>Your Information</p>
-          <form className=''>
-            <label class="label">
-              <span class="label-text">Your Name:</span>
-            </label>
-            <input type="text" name='name' value={person?.name} disabled class="input input-bordered w-full input-sm" /> <br />
-            <label class="label">
-              <span class="label-text">Your Email:</span>
-            </label>
-            <input type="text" name='email' value={person?.email} disabled class="input input-bordered w-full input-sm" /> <br />
-            <label class="label">
-              <span class="label-text">Your Address:</span>
-            </label>
-            <input type="text" name='address' value={person?.address} disabled class=" input input-bordered w-full input-sm" /> <br />
-            <label class="label">
-              <span class="label-text">Your Phone Number:</span>
-            </label>
-            <input type="number" name='phone' value={person?.phone} disabled class=" input input-bordered w-full input-sm" /> <br />
-            <label class="label">
-              <span class="label-text">Your Education:</span>
-            </label>
-            <input type="text" name='education' value={person?.education} disabled class=" input input-bordered w-full input-sm" /> <br />
-          </form>
-        </div> */}
         <div className='my-10 w-full text-center'>
-          {/* <p className='text-2xl text-center text-accent-focus'>Update Your Information</p> */}
           <form onSubmit={handleUpdate} id="form">
             <label class="label">
               <span class="label-text">Your Name:</span>
