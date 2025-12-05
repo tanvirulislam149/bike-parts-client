@@ -67,7 +67,7 @@ const Login = () => {
       name: gUser.user.displayName,
       email: gUser.user.email,
     };
-    fetch("https://autoparts-vsj8.onrender.com/users", {
+    fetch("https://bike-parts-server-tawny.vercel.app/users", {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -10,7 +10,7 @@ const Parts = () => {
     error,
     data: parts,
   } = useQuery("parts", () =>
-    fetch("https://autoparts-vsj8.onrender.com/parts").then((res) => {
+    fetch("https://bike-parts-server-tawny.vercel.app/parts").then((res) => {
       return res.json();
     })
   );

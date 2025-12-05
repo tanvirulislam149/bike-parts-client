@@ -1,7 +1,7 @@
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React, { useEffect, useState } from 'react';
-import { ColorRing } from 'react-loader-spinner';
-import { toast } from 'react-toastify';
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import React, { useEffect, useState } from "react";
+import { ColorRing } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 const CheckoutForm = ({ order, obj }) => {
   const stripe = useStripe();
@@ -10,29 +10,30 @@ const CheckoutForm = ({ order, obj }) => {
   const [clientSecret, setClientSecret] = useState("");
   const toastId = React.useRef(null);
 
-
   const { phone, setPhone, address, setAddress } = obj;
 
   const { price, userName, email, _id } = order;
 
   useEffect(() => {
     if (price) {
-      fetch(`https://autoparts-vsj8.onrender.com/create-payment-intent`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ price })
-      })
-        .then(res => res.json())
-        .then(data => {
+      fetch(
+        `https://bike-parts-server-tawny.vercel.app/create-payment-intent`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ price }),
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
           if (data?.clientSecret) {
-            setClientSecret(data.clientSecret)
+            setClientSecret(data.clientSecret);
           }
-        })
+        });
     }
-  }, [price])
-
+  }, [price]);
 
   // toast(
   //   <div className='flex items-center'>
@@ -50,12 +51,11 @@ const CheckoutForm = ({ order, obj }) => {
   //   , { autoClose: false }
   // )
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     toast(
-      <div className='flex items-center'>
+      <div className="flex items-center">
         <ColorRing
           visible={true}
           height="40"
@@ -66,16 +66,15 @@ const CheckoutForm = ({ order, obj }) => {
           colors={["white", "white", "white", "white", "white"]}
         />
         <p>Loading...</p>
-      </div>
-      , { autoClose: false }
-    )
+      </div>,
+      { autoClose: false }
+    );
 
     if (!phone || !address) {
       toast.dismiss(toastId.current);
       setCardError("Please enter address and phone number.");
       return;
     }
-
 
     if (!elements || !stripe) {
       return;
@@ -88,39 +87,35 @@ const CheckoutForm = ({ order, obj }) => {
     }
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
+      type: "card",
       card,
     });
 
     if (error) {
       toast.dismiss(toastId.current);
       setCardError(error.message);
-    }
-    else {
+    } else {
       setCardError("");
     }
 
-    const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
-      clientSecret,
-      {
+    const { paymentIntent, error: intentError } =
+      await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: card,
           billing_details: {
             name: userName,
-            email: email
+            email: email,
           },
         },
-      },
-    )
+      });
 
     if (intentError) {
       toast.dismiss(toastId.current);
-      setCardError(intentError?.message)
-    }
-    else {
-      setCardError("")
+      setCardError(intentError?.message);
+    } else {
+      setCardError("");
       toast.dismiss(toastId.current);
-      toast.success("Your Payment Is Completed")
+      toast.success("Your Payment Is Completed");
       card.clear();
       console.log(paymentIntent);
       setAddress("");
@@ -130,17 +125,17 @@ const CheckoutForm = ({ order, obj }) => {
           transactionId: paymentIntent?.id,
           orderId: _id,
           address: address,
-          phone: phone
-        }
-        fetch("https://autoparts-vsj8.onrender.com/updateOrder", {
+          phone: phone,
+        };
+        fetch("https://bike-parts-server-tawny.vercel.app/updateOrder", {
           method: "PUT",
           headers: {
             "content-type": "application/json",
           },
-          body: JSON.stringify(paidStatus)
+          body: JSON.stringify(paidStatus),
         })
-          .then(res => res.json())
-          .then(data => console.log(data))
+          .then((res) => res.json())
+          .then((data) => console.log(data));
       }
     }
   };
@@ -149,15 +144,16 @@ const CheckoutForm = ({ order, obj }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <CardElement />
-        <button className='btn border-0 w-full bg-red-600 hover:bg-black rounded-none mt-5' type="submit" disabled={!stripe || !elements}>
+        <button
+          className="btn border-0 w-full bg-red-600 hover:bg-black rounded-none mt-5"
+          type="submit"
+          disabled={!stripe || !elements}
+        >
           Pay
         </button>
       </form>
-      {
-        cardError ? <p className='text-red-500 mt-2'>{cardError}</p> : ""
-      }
+      {cardError ? <p className="text-red-500 mt-2">{cardError}</p> : ""}
     </div>
-
   );
 };
 

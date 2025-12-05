@@ -11,22 +11,23 @@ function RequiredAdmin({ children }) {
   const [dLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://autoparts-vsj8.onrender.com/checkAdmin/${user?.email}`)
-      .then(res => res.json())
-      .then(data => {
+    fetch(
+      `https://bike-parts-server-tawny.vercel.app/checkAdmin/${user?.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
         setAdmin(data);
         setLoading(false);
       });
-  }, [user])
+  }, [user]);
 
   if (loading || dLoading) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
-
 
   if (admin?.role !== "admin") {
     signOut(auth);
-    return
+    return;
   }
 
   return children;

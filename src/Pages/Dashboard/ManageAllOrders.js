@@ -1,10 +1,10 @@
-import { signOut } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
-import auth from '../../firebase.init';
-import DeleteModal from '../DeleteModal';
-import Loading from '../Loading';
-import { ColorRing } from 'react-loader-spinner';
-import { toast } from 'react-toastify';
+import { signOut } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import auth from "../../firebase.init";
+import DeleteModal from "../DeleteModal";
+import Loading from "../Loading";
+import { ColorRing } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 const ManageAllOrders = ({ setModal, modal }) => {
   const [allOrders, setAllOrders] = useState([]);
@@ -12,31 +12,28 @@ const ManageAllOrders = ({ setModal, modal }) => {
   const toastId = React.useRef(null);
   const [id, setId] = useState();
 
-
   useEffect(() => {
     setPageLoading(true);
-    fetch("https://autoparts-vsj8.onrender.com/allOrders", {
+    fetch("https://bike-parts-server-tawny.vercel.app/allOrders", {
       headers: {
-        authorization: localStorage.getItem("accessToken")
-      }
+        authorization: localStorage.getItem("accessToken"),
+      },
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.message) {
           signOut(auth);
           localStorage.removeItem("accessToken");
         } else {
           setPageLoading(false);
-          setAllOrders(data)
+          setAllOrders(data);
         }
-
       });
-  }, [])
+  }, []);
 
   const handleShipped = (id) => {
-
     toast(
-      <div className='flex items-center'>
+      <div className="flex items-center">
         <ColorRing
           visible={true}
           height="40"
@@ -47,30 +44,29 @@ const ManageAllOrders = ({ setModal, modal }) => {
           colors={["white", "white", "white", "white", "white"]}
         />
         <p>Loading...</p>
-      </div>
-      , { autoClose: false }
-    )
+      </div>,
+      { autoClose: false }
+    );
 
-
-    fetch(`https://autoparts-vsj8.onrender.com/shipped/${id}`, {
+    fetch(`https://bike-parts-server-tawny.vercel.app/shipped/${id}`, {
       headers: {
-        authorization: localStorage.getItem("accessToken")
-      }
+        authorization: localStorage.getItem("accessToken"),
+      },
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.message) {
           signOut(auth);
           localStorage.removeItem("accessToken");
         }
         if (data.acknowledged) {
-          fetch("https://autoparts-vsj8.onrender.com/allOrders", {
+          fetch("https://bike-parts-server-tawny.vercel.app/allOrders", {
             headers: {
-              authorization: localStorage.getItem("accessToken")
-            }
+              authorization: localStorage.getItem("accessToken"),
+            },
           })
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
               if (data.message) {
                 signOut(auth);
                 localStorage.removeItem("accessToken");
@@ -81,14 +77,12 @@ const ManageAllOrders = ({ setModal, modal }) => {
             });
         }
       });
-  }
-
+  };
 
   useEffect(() => {
     if (modal) {
-
       toast(
-        <div className='flex items-center'>
+        <div className="flex items-center">
           <ColorRing
             visible={true}
             height="40"
@@ -99,23 +93,23 @@ const ManageAllOrders = ({ setModal, modal }) => {
             colors={["white", "white", "white", "white", "white"]}
           />
           <p>Loading...</p>
-        </div>
-        , { autoClose: false }
-      )
+        </div>,
+        { autoClose: false }
+      );
 
-      fetch(`https://autoparts-vsj8.onrender.com/cancelOrder/${id}`, {
+      fetch(`https://bike-parts-server-tawny.vercel.app/cancelOrder/${id}`, {
         headers: {
-          authorization: localStorage.getItem("accessToken")
-        }
+          authorization: localStorage.getItem("accessToken"),
+        },
       })
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           if (data.message) {
             signOut(auth);
             localStorage.removeItem("accessToken");
           }
           if (data.acknowledged) {
-            const remaining = allOrders.filter(o => o._id !== id);
+            const remaining = allOrders.filter((o) => o._id !== id);
             setAllOrders(remaining);
             toast.dismiss(toastId.current);
             toast.success("Order cancelled successfully.");
@@ -123,54 +117,70 @@ const ManageAllOrders = ({ setModal, modal }) => {
         });
     }
     setModal(false);
-  }, [modal, id, allOrders])
-
+  }, [modal, id, allOrders]);
 
   if (pageLoading) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
-
 
   return (
     <div>
-      {
-        allOrders.length ?
-          <div>
-            <p className='text-5xl rajdhani-font orange-color my-5'>Manage All Orders</p>
-            <div class="overflow-x-auto">
-              <table class="table table-zebra w-full">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Email</th>
-                    <th>Item</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                    <th>Button</th>
-                    <th>Status</th>
+      {allOrders.length ? (
+        <div>
+          <p className="text-5xl rajdhani-font orange-color my-5">
+            Manage All Orders
+          </p>
+          <div class="overflow-x-auto">
+            <table class="table table-zebra w-full">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Email</th>
+                  <th>Item</th>
+                  <th>Quantity</th>
+                  <th>Total Price</th>
+                  <th>Button</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {allOrders?.map((o, index) => (
+                  <tr key={o._id}>
+                    <th>{index + 1}</th>
+                    <td>{o.email}</td>
+                    <td>{o.item}</td>
+                    <td>{o.quantity}</td>
+                    <td>{o.price}</td>
+                    <td>
+                      {o.pay === "unpaid" ? (
+                        <label
+                          for="deleteModal"
+                          onClick={() => setId(o._id)}
+                          className="btn btn-xs btn-error"
+                        >
+                          Cancel
+                        </label>
+                      ) : (
+                        <button
+                          onClick={() => handleShipped(o._id)}
+                          disabled={o.status === "Shipped" && "disabled"}
+                          className="btn btn-xs btn-success"
+                        >
+                          Set For Shipment
+                        </button>
+                      )}
+                    </td>
+                    <td>{o.status || "Unpaid"}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {
-                    allOrders?.map((o, index) =>
-                      <tr key={o._id}>
-                        <th>{index + 1}</th>
-                        <td>{o.email}</td>
-                        <td>{o.item}</td>
-                        <td>{o.quantity}</td>
-                        <td>{o.price}</td>
-                        <td>{o.pay === "unpaid" ? <label for="deleteModal" onClick={() => setId(o._id)} className='btn btn-xs btn-error'>Cancel</label> : <button onClick={() => handleShipped(o._id)} disabled={o.status === "Shipped" && "disabled"} className='btn btn-xs btn-success'>Set For Shipment</button>}</td>
-                        <td>{o.status || "Unpaid"}</td>
-                      </tr>
-                    )
-                  }
-
-                </tbody>
-              </table>
-            </div>
-            {/* <DeleteModal setModal={setModal}></DeleteModal> */}
-          </div> : <p className='text-center text-4xl rajdhani-font'>No Orders Found.</p>
-      }
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {/* <DeleteModal setModal={setModal}></DeleteModal> */}
+        </div>
+      ) : (
+        <p className="text-center text-4xl rajdhani-font">No Orders Found.</p>
+      )}
     </div>
   );
 };
